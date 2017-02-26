@@ -714,32 +714,36 @@
     <display-name lang="en">OSN Movies HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OM1.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies HD+2">
-    <display-name lang="en">OSN Movies HD+2</display-name>
+  </channel><channel id="OSN Movies First HD">
+    <display-name lang="en">OSN Movies First HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/OM1.png"/>
+    <url>http://www.osn.com</url>
+  </channel><channel id="OSN Movies First HD +2h">
+    <display-name lang="en">OSN Movies First HD +2h</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OMX.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Movies Action HD">
     <display-name lang="en">OSN Movies Action HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/AHD.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies Action+2">
-    <display-name lang="en">OSN Movies Action+2</display-name>
+  </channel><channel id="OSN Movies Action +2">
+    <display-name lang="en">OSN Movies Action +2</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OMA.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies Premiere HD">
-    <display-name lang="en">OSN Movies Premiere HD</display-name>
+  </channel><channel id="OSN Movies HD Premier">
+    <display-name lang="en">OSN Movies HD Premier</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OPR.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies Premiere+2">
-    <display-name lang="en">OSN Movies Premiere+2</display-name>
+  </channel><channel id="OSN Movies +2h">
+    <display-name lang="en">OSN Movies +2h</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OPX.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies Drama HD">
-    <display-name lang="en">OSN Movies Drama HD</display-name>
+  </channel><channel id="OSN Movies Thriller HD">
+    <display-name lang="en">OSN Movies Thriller HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OCM.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Movies Drama+2">
-    <display-name lang="en">OSN Movies Drama+2</display-name>
+  </channel><channel id="OSN Movies Thriller +2h">
+    <display-name lang="en">OSN Movies Thriller +2h</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OC2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Movies Festival HD">
@@ -794,20 +798,16 @@
     <display-name lang="en">UTV Movies</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/UTM.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Yahala HD">
-    <display-name lang="en">OSN Yahala HD</display-name>
+  </channel><channel id="OSN Ya Hala Al Oula">
+    <display-name lang="en">OSN Ya Hala Al Oula</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OYH.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Yahala HD +2">
-    <display-name lang="en">OSN Yahala HD +2</display-name>
+  </channel><channel id="OSN Ya Hala Al Oula +2h">
+    <display-name lang="en">OSN Ya Hala Al Oula +2h</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OYX.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Yahala Shabab HD">
-    <display-name lang="en">OSN Yahala Shabab HD</display-name>
-    <icon src="http://content.osn.com/logo/channel/cropped/OYS.png"/>
-    <url>http://www.osn.com</url>
-  </channel><channel id="OSN Yahala Drama HD">
-    <display-name lang="en">OSN Yahala Drama HD</display-name>
+  </channel><channel id="OSN Ya Hala HD">
+    <display-name lang="en">OSN Ya Hala HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OYA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Yahala Cinema HD">
@@ -870,24 +870,24 @@
     <display-name lang="en">AD Drama + HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/ADH.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN First HD">
-    <display-name lang="en">OSN First HD</display-name>
+  </channel><channel id="OSN Series First HD">
+    <display-name lang="en">OSN Series First HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OFH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN First HBO HD">
     <display-name lang="en">OSN First HBO HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OFS.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN First +2">
-    <display-name lang="en">OSN First +2</display-name>
+  </channel><channel id="OSN Series HD">
+    <display-name lang="en">OSN Series HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OFX.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN First Comedy HD">
-    <display-name lang="en">OSN First Comedy HD</display-name>
+  </channel><channel id="OSN Series Comedy HD">
+    <display-name lang="en">OSN Series Comedy HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OCO.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN First Comedy +2">
-    <display-name lang="en">OSN First Comedy +2</display-name>
+  </channel><channel id="OSN Series Comedy HD +2h">
+    <display-name lang="en">OSN Series Comedy HD +2h</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/OCX.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Comedy Central">
@@ -934,6 +934,10 @@
     <display-name lang="en">Travel Channel</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/TRA.png"/>
     <url>http://www.osn.com</url>
+  </channel><channel id="\\u0026 TV">
+    <display-name lang="en">\\u0026 TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ATV.png"/>
+    <url>http://www.osn.com</url>
   </channel><channel id="Star Plus Middle East">
     <display-name lang="en">Star Plus Middle East</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/STP.png"/>
@@ -954,6 +958,10 @@
     <display-name lang="en">Hum TV Middle East</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/HUM.png"/>
     <url>http://www.osn.com</url>
+  </channel><channel id="Rishtey TV">
+    <display-name lang="en">Rishtey TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/RIS.png"/>
+    <url>http://www.osn.com</url>
   </channel><channel id="Life OK Middle East">
     <display-name lang="en">Life OK Middle East</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/LIF.png"/>
@@ -962,8 +970,8 @@
     <display-name lang="en">Sab TV</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/SAB.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="Ary Digital UAE">
-    <display-name lang="en">Ary Digital UAE</display-name>
+  </channel><channel id="Ary Digital TV">
+    <display-name lang="en">Ary Digital TV</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/ARY.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="GEO TV">
@@ -977,6 +985,10 @@
   </channel><channel id="Kiran TV">
     <display-name lang="en">Kiran TV</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/KIR.png"/>
+    <url>http://www.osn.com</url>
+  </channel><channel id="Urdu 1">
+    <display-name lang="en">Urdu 1</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/URD.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Sun TV">
     <display-name lang="en">Sun TV</display-name>
@@ -1054,9 +1066,13 @@
     <display-name lang="en">Nick Jr</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/NJR.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="Jim Jam">
-    <display-name lang="en">Jim Jam</display-name>
-    <icon src="http://content.osn.com/logo/channel/cropped/JJM.png"/>
+  </channel><channel id="NickToons">
+    <display-name lang="en">NickToons</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NKT.png"/>
+    <url>http://www.osn.com</url>
+  </channel><channel id="OSN Kid Zone TV">
+    <display-name lang="en">OSN Kid Zone TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/KDZ.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Baby TV Europe">
     <display-name lang="en">Baby TV Europe</display-name>
@@ -1101,6 +1117,10 @@
   </channel><channel id="Dunya News">
     <display-name lang="en">Dunya News</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/DUN.png"/>
+    <url>http://www.osn.com</url>
+  </channel><channel id="ARY News">
+    <display-name lang="en">ARY News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AYN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Geo News">
     <display-name lang="en">Geo News</display-name>
@@ -1163,7 +1183,7 @@
     <icon src="http://content.osn.com/logo/channel/cropped/DCX.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Crime \\u0026 Investigation Network">
-    <display-name lang="en">Crime \\u0026 Investigation Network</display-name>
+    <display-name lang="en">Crime and Investigation Network</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/CAI.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="History HD">
@@ -1190,16 +1210,12 @@
     <display-name lang="en">Nat Geo People HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/NAH.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="Outdoor HD">
-    <display-name lang="en">Outdoor HD</display-name>
-    <icon src="http://content.osn.com/logo/channel/cropped/OHD.png"/>
-    <url>http://www.osn.com</url>
-  </channel><channel id="OSN Sports 1 HD">
-    <display-name lang="en">OSN Sports 1 HD</display-name>
+  </channel><channel id="OSN Sports Action 1 HD">
+    <display-name lang="en">OSN Sports Action 1 HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/SPH.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="OSN Sports 2 HD">
-    <display-name lang="en">OSN Sports 2 HD</display-name>
+  </channel><channel id="OSN Sports Action 2 HD">
+    <display-name lang="en">OSN Sports Action 2 HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/SP2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports 3 HD">
@@ -1209,6 +1225,10 @@
   </channel><channel id="OSN Sports 4 HD">
     <display-name lang="en">OSN Sports 4 HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/SP4.png"/>
+    <url>http://www.osn.com</url>
+  </channel><channel id="OSN Sports 5 HD">
+    <display-name lang="en">OSN Sports 5 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SP5.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN WWE Network HD">
     <display-name lang="en">OSN WWE Network HD</display-name>
@@ -1230,12 +1250,10 @@
     <display-name lang="en">Fuel TV</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/FUE.png"/>
     <url>http://www.osn.com</url>
-  </channel><channel id="AD Sport 1">
-    <display-name lang="en">AD Sports 1 HD</display-name>
-    <url>http://www.invision.com.sa</url>
-  </channel><channel id="AD Sport 2">
-    <display-name lang="en">AD Sports 2 HD</display-name>
-    <url>http://www.invision.com.sa</url>
+  </channel><channel id="Ginx Esports TV HD">
+    <display-name lang="en">Ginx Esports TV HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GNX.png"/>
+    <url>http://www.osn.com</url>
   </channel><channel id="AD Sports 3 HD">
     <display-name lang="en">AD Sports 3 HD</display-name>
     <icon src="http://content.osn.com/logo/channel/cropped/AD3.png"/>

@@ -632,11 +632,11 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd8">
     <display-name lang="en">Bein sports 8 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd9">
     <display-name lang="en">Bein sports 9 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd10">
     <display-name lang="en">Bein sports 10 hd</display-name>
@@ -648,11 +648,11 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd12">
     <display-name lang="en">Bein sports 12 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd13">
     <display-name lang="en">Bein sports 13 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd14">
     <display-name lang="en">Bein sports 14 hd</display-name>
@@ -660,7 +660,7 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd15">
     <display-name lang="en">Bein sports 15 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd16">
     <display-name lang="en">Bein sports 16 hd</display-name>
@@ -668,7 +668,7 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd17">
     <display-name lang="en">Bein sports 17 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="news_ar">
     <display-name lang="en">Bein news</display-name>

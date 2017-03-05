@@ -686,6 +686,35 @@
     <display-name lang="en">Bein sports (es)</display-name>
     <icon src="http://epg.beinsports.com/us_sports/Global.svg"/>
     <url>http://www.bein.net</url>
+  </channel><channel id="fr_3">
+    <display-name lang="en">Bein sports 3 (fr)</display-name>
+    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
+    <url>http://www.bein.net</url>
+  </channel><channel id="4MAX">
+    <display-name lang="en">Bein sports max 4</display-name>
+    <url>http://www.bein.net</url>
+  </channel><channel id="5MAX">
+    <display-name lang="en">Bein sports max 5</display-name>
+    <url>http://www.bein.net</url>
+  </channel><channel id="6MAX">
+    <display-name lang="en">Bein sports max 6</display-name>
+    <url>http://www.bein.net</url>
+  </channel><channel id="7MAX">
+    <display-name lang="en">Bein sports max 7</display-name>
+    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
+    <url>http://www.bein.net</url>
+  </channel><channel id="8MAX">
+    <display-name lang="en">Bein sports max 8</display-name>
+    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
+    <url>http://www.bein.net</url>
+  </channel><channel id="9MAX">
+    <display-name lang="en">Bein sports max 9</display-name>
+    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
+    <url>http://www.bein.net</url>
+  </channel><channel id="10MAX">
+    <display-name lang="en">Bein sports max 10</display-name>
+    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
+    <url>http://www.bein.net</url>
   </channel><channel id="movieshd1">
     <display-name lang="en">Bein movies 1 hd</display-name>
     <icon src="http://epg.beinsports.com/mena_entertaintment/MoviesHD1.svg?2017"/>
@@ -749,10 +778,6 @@
   </channel><channel id="baraem">
     <display-name lang="en">Baraem</display-name>
     <icon src="http://epg.beinsports.com/mena_entertaintment/MoviesHD1.svg?2017"/>
-    <url>http://www.bein.net</url>
-  </channel><channel id="fr_3">
-    <display-name lang="en">Bein sports 3 (fr)</display-name>
-    <icon src="http://epg.beinsports.com/france_sports/HD1.svg"/>
     <url>http://www.bein.net</url>
   </channel><channel id="OSN Movies HD">
     <display-name lang="en">OSN Movies HD</display-name>

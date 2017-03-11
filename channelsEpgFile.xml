@@ -1250,234 +1250,311 @@
     <url>http://www.osn.com</url>
   </channel><channel id="Baby TV Europe">
     <display-name lang="en">Baby TV Europe</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/BAB.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN News">
     <display-name lang="en">OSN News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ONS.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Sky News HD">
     <display-name lang="en">Sky News HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SKH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="BBC World">
     <display-name lang="en">BBC World</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/BBW.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Fox News">
     <display-name lang="en">Fox News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/FXN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="CNBC">
     <display-name lang="en">CNBC</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CNB.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Bloomberg">
     <display-name lang="en">Bloomberg</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/BTV.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="CCTV News">
     <display-name lang="en">CCTV News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CT9.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="France 24 English">
     <display-name lang="en">France 24 English</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/FRE.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="NHK World TV">
     <display-name lang="en">NHK World TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NHK.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Dunya News">
     <display-name lang="en">Dunya News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DUN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="ARY News">
     <display-name lang="en">ARY News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AYN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Geo News">
     <display-name lang="en">Geo News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GON.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="ABP News India">
     <display-name lang="en">ABP News India</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ABP.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Aaj Tak">
     <display-name lang="en">Aaj Tak</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ZEN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Times Now">
     <display-name lang="en">Times Now</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/TIM.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="NDTV 24x7">
     <display-name lang="en">NDTV 24x7</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NDT.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Asianet News">
     <display-name lang="en">Asianet News</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ANN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Sky News Arabia HD">
     <display-name lang="en">Sky News Arabia HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SNH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Sky News Arabia">
     <display-name lang="en">Sky News Arabia</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SNA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Alarabiya">
     <display-name lang="en">Alarabiya</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ARH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="France 24">
     <display-name lang="en">France 24</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/FRA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="CCTV Arabic">
     <display-name lang="en">CCTV Arabic</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CTA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Discovery HD">
     <display-name lang="en">Discovery HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DSC.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Discovery Family HD">
     <display-name lang="en">Discovery Family HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DCF.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Discovery Science HD">
     <display-name lang="en">Discovery Science HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SCI.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="IDX HD">
     <display-name lang="en">IDX HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DCX.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Crime \\u0026 Investigation Network">
     <display-name lang="en">Crime and Investigation Network</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CAI.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="History HD">
     <display-name lang="en">History HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/HIS.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="H2 HD">
     <display-name lang="en">H2 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/HI2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Animal Planet HD">
     <display-name lang="en">Animal Planet HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/APL.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Nat Geo HD">
     <display-name lang="en">Nat Geo HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NGO.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Nat Geo Wild HD">
     <display-name lang="en">Nat Geo Wild HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NHD.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Nat Geo People HD">
     <display-name lang="en">Nat Geo People HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/NAH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports Action 1 HD">
     <display-name lang="en">OSN Sports Action 1 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SPH.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports Action 2 HD">
     <display-name lang="en">OSN Sports Action 2 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SP2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports 3 HD">
     <display-name lang="en">OSN Sports 3 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SP3.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports 4 HD">
     <display-name lang="en">OSN Sports 4 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SP4.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports 5 HD">
     <display-name lang="en">OSN Sports 5 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/SP5.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN WWE Network HD">
     <display-name lang="en">OSN WWE Network HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/WWE.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Sports Cricket HD">
     <display-name lang="en">OSN Sports Cricket HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CRI.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Ten Cricket International">
     <display-name lang="en">Ten Cricket International</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/TCR.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="OSN Fight Network HD">
     <display-name lang="en">OSN Fight Network HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/FNW.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Fuel TV">
     <display-name lang="en">Fuel TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/FUE.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Ginx Esports TV HD">
     <display-name lang="en">Ginx Esports TV HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GNX.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="AD Sports 3 HD">
     <display-name lang="en">AD Sports 3 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AD3.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="AD Sports 4 HD">
     <display-name lang="en">AD Sports 4 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AD4.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="AD Sports 5 HD">
     <display-name lang="en">AD Sports 5 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AD5.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="AD Sports 6 HD">
     <display-name lang="en">AD Sports 6 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AD6.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Edge Sport HD">
     <display-name lang="en">Edge Sport HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AD7.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Dubai Sports 4 HD">
     <display-name lang="en">Dubai Sports 4 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DS5.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Dubai Sports 2 HD">
     <display-name lang="en">Dubai Sports 2 HD</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DH2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="TFC">
     <display-name lang="en">TFC</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/TFC.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="ABS-CBN Sports+Action">
     <display-name lang="en">ABS-CBN Sports+Action</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/BRO.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Cinema One Global">
     <display-name lang="en">Cinema One Global</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/COG.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="ANC">
     <display-name lang="en">ANC</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/ANC.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="DZMM Teleradyo">
     <display-name lang="en">DZMM Teleradyo</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DZM.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="DWRR 101.9">
     <display-name lang="en">DWRR 101.9</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/DWR.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Viva TV">
     <display-name lang="en">Viva TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/VIV.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Kapatid TV5">
     <display-name lang="en">Kapatid TV5</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/TV5.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Aksyon TV">
     <display-name lang="en">Aksyon TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/AKS.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Cine Mo">
     <display-name lang="en">Cine Mo</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/CIN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Lifestyle Network">
     <display-name lang="en">Lifestyle Network</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/LSN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="GMA Pinoy TV">
     <display-name lang="en">GMA Pinoy TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GMA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="GMA Life TV">
     <display-name lang="en">GMA Life TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GML.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="GMA News TV">
     <display-name lang="en">GMA News TV</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/GMN.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC 1">
     <display-name lang="en">MBC 1</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MH1.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC 4">
     <display-name lang="en">MBC 4</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MH4.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC Drama">
     <display-name lang="en">MBC Drama</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MHD.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC 2">
     <display-name lang="en">MBC 2</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MH2.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC MAX">
     <display-name lang="en">MBC MAX</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MHM.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="MBC Action">
     <display-name lang="en">MBC Action</display-name>
+    <icon src="http://content.osn.com/logo/channel/cropped/MHA.png"/>
     <url>http://www.osn.com</url>
   </channel><channel id="Setanta">
     <display-name lang="en">Setanta</display-name>
+    <icon src="https://eirsport.ie/Themes/eir/imgs/channel_logos/Setanta.png"/>
     <url>http://www.eirsport.ie</url>
   </channel><channel id="BT-Sports-1">
     <display-name lang="en">BT Sports 1</display-name>
+    <icon src="https://eirsport.ie/Themes/eir/imgs/channel_logos/BT-Sports-1.png"/>
     <url>http://www.eirsport.ie</url>
   </channel><channel id="BT-Sports-2">
     <display-name lang="en">BT Sports 2</display-name>
+    <icon src="https://eirsport.ie/Themes/eir/imgs/channel_logos/BT-Sports-2.png"/>
     <url>http://www.eirsport.ie</url>
   </channel><channel id="BT-Europe">
     <display-name lang="en">BT-Europe</display-name>
+    <icon src="https://eirsport.ie/Themes/eir/imgs/channel_logos/BT-Europe.png"/>
     <url>http://www.eirsport.ie</url>
   </channel><channel id="ESPN">
     <display-name lang="en">ESPN</display-name>
+    <icon src="https://eirsport.ie/Themes/eir/imgs/channel_logos/ESPN.png"/>
     <url>http://www.eirsport.ie</url>
   </channel><channel id="D8">
     <display-name lang="fr">D8</display-name>

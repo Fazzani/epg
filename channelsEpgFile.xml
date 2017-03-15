@@ -706,7 +706,7 @@
     <url>http://www.watania.tn</url>
   </channel><channel id="hd1">
     <display-name lang="en">Bein sports 1 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd2">
     <display-name lang="en">Bein sports 2 hd</display-name>
@@ -722,11 +722,11 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd5">
     <display-name lang="en">Bein sports 5 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd6">
     <display-name lang="en">Bein sports 6 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd7">
     <display-name lang="en">Bein sports 7 hd</display-name>
@@ -734,31 +734,31 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd8">
     <display-name lang="en">Bein sports 8 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd9">
     <display-name lang="en">Bein sports 9 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd10">
     <display-name lang="en">Bein sports 10 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd11">
     <display-name lang="en">Bein sports 11 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd12">
     <display-name lang="en">Bein sports 12 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd13">
     <display-name lang="en">Bein sports 13 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd14">
     <display-name lang="en">Bein sports 14 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd15">
     <display-name lang="en">Bein sports 15 hd</display-name>
@@ -766,7 +766,7 @@
     <url>http://www.bein.net</url>
   </channel><channel id="hd16">
     <display-name lang="en">Bein sports 16 hd</display-name>
-    <icon src="http://epg.beinsports.com/mena_sports/HD1.svg?2017"/>
+    <icon src="http://epg.beinsports.com/mena_sports/Global.svg?2017"/>
     <url>http://www.bein.net</url>
   </channel><channel id="hd17">
     <display-name lang="en">Bein sports 17 hd</display-name>

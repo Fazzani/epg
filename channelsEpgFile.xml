@@ -1,4 +1,6 @@
-﻿<channel id="20">
+<?xml version="1.0"?>
+<tv xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <channel id="20">
     <display-name>13e Rue</display-name>
     <icon src="http://localhost/logo20.gif"/>
   </channel><channel id="21">
@@ -497,3 +499,4 @@
     <display-name>Zee TV</display-name>
     <icon src="http://localhost/logo286.gif"/>
   </channel>
+</tv>

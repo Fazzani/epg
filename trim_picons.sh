@@ -1,6 +1,6 @@
 #!/bin/bash
 git pull && 
-#mkdir ./logosChannels/tmp 
+mkdir ./logosChannels/tmp 
 echo "Triming png picons" 
 mogrify -trim -path  ./logosChannels/tmp  ./logosChannels/* &&
 mv  ./logosChannels/tmp/*  ./logosChannels/ && rm -R  ./logosChannels/tmp && 

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd  logosChannels/
 echo "Triming png picons"
 mogrify -trim *.png 
 echo "Pushing to Github"

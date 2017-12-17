@@ -1,5 +1,5 @@
 #!/bin/bash
-git pull && 
+#git pull && 
 #mkdir ./logosChannels/tmp 
 echo "Triming png picons" 
 mogrify -trim -Path  ./logosChannels/tmp  ./logosChannels/* &&

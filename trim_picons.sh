@@ -1,4 +1,6 @@
 #!/bin/bash
+
+source $HOME/.keychain/${HOSTNAME}-sh
 date +"%m/%d/%Y %H:%M:%S $HOSTNAME"
 cd /root/epg/
 git fetch origin

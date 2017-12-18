@@ -1,4 +1,5 @@
 #!/bin/bash
+pwd
 git fetch origin
 reslog=$(git log HEAD..origin/master --oneline)
 if [[ "${reslog}" != "" ]] ; then

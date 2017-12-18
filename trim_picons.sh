@@ -1,5 +1,5 @@
 #!/bin/bash
-pwd
+date +"%m/%d/%Y %H:%M:%S $HOSTNAME"
 cd /root/epg/
 git fetch origin
 reslog=$(git log HEAD..origin/master --oneline)

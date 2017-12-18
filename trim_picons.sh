@@ -12,4 +12,6 @@ if [[ "${reslog}" != "" ]] ; then
 	echo "Pushing to Github" 
 	git add --all && 
 	git commit -m "Triming picons" && git push
+else
+ echo 'nothing to do..'
 fi

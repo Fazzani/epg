@@ -1,5 +1,6 @@
 #!/bin/bash
 pwd
+cd /root/epg/
 git fetch origin
 reslog=$(git log HEAD..origin/master --oneline)
 if [[ "${reslog}" != "" ]] ; then

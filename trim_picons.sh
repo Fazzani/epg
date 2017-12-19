@@ -10,6 +10,7 @@ if [[ "${reslog}" != "" ]] ; then
 	mkdir ./logosChannels/tmp 
 	echo "Triming png picons" 
 	mogrify -trim -path  ./logosChannels/tmp -format png -alpha set -transparent black -resize 400x240! ./logosChannels/*.{jpg,png} &&
+	ls -l ./logosChannels/
 	mv  ./logosChannels/tmp/* ./logosChannels/  
 	rm -R  ./logosChannels/tmp 
 	echo "Pushing to Github" 

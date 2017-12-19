@@ -8,9 +8,8 @@ reslog=$(git log HEAD..origin/master --oneline)
 if [[ "${reslog}" != "" ]] ; then
 	git pull && 
 	mkdir ./logosChannels/tmp 
-	#ls ./logosChannels/tmp/
 	echo "Triming png picons" 
-	mogrify -trim -path  ./logosChannels/tmp  ./logosChannels/* &&
+	mogrify -trim -path  ./logosChannels/tmp -format png -alpha set -transparent black -resize 400x240! ./logosChannels/*.{jpg,png} &&
 	mv  ./logosChannels/tmp/* ./logosChannels/  
 	rm -R  ./logosChannels/tmp 
 	echo "Pushing to Github" 

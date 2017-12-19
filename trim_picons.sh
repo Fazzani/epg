@@ -9,7 +9,7 @@ if [[ "${reslog}" != "" ]] ; then
 	git pull && 
 	mkdir ./logosChannels/tmp 
 	echo "Triming png picons" 
-	mogrify -trim -path  ./logosChannels/tmp -format png -alpha set -transparent black -resize 400x240! ./logosChannels/*.{jpg,png} &&
+	mogrify -trim -path  ./logosChannels/tmp -format png -alpha set -resize 400x240! ./logosChannels/*.{jpg,png} &&
 	ls -l ./logosChannels/
 	mv  ./logosChannels/tmp/* ./logosChannels/  
 	rm -R  ./logosChannels/tmp 

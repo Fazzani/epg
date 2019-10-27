@@ -7,4 +7,4 @@ script: |
   python ./update_index.py &&
   git add --all && 
   git commit -m "update index.json" &&
-  git push https://${PAT}@github.com/Fazzani/epg.git
+  git push https://${PAT}@github.com/Fazzani/epg.git HEAD:master

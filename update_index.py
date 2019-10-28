@@ -2,7 +2,7 @@ import os
 import json
 
 
-PICON_BASE_URL = os.getenv("PICON_BASE_URL", "https://github.com/Fazzani/epg/raw/master/logosChannels/")
+PICON_BASE_URL = os.getenv("PICON_BASE_URL", "https://raw.githubusercontent.com/Fazzani/epg/master/logosChannels/")
 
 
 if __name__ == "__main__":

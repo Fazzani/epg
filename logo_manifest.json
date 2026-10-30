@@ -1,0 +1,62 @@
+{
+  "entries": [
+    {
+      "id": "tv.fr.france-2",
+      "name": "France 2",
+      "type": "tv",
+      "country": "FR",
+      "aliases": [
+        "France2",
+        "France 2 HD",
+        "FR: France 2"
+      ],
+      "logo": "logosChannels/france2.png"
+    }
+  ],
+  "preferred_images": {
+    "abudhabisports3": "abudhabisports3.png",
+    "abudhabisports3hd": "abudhabisports3hd.png",
+    "bayern": "bayern.png",
+    "bayernfctv": "bayernfctv.png",
+    "be1": "be1.png",
+    "becine": "becine.png",
+    "chouflihal": "chouflihal.png",
+    "comedieplus": "comedieplus.png",
+    "demain": "demain.png",
+    "denyaokhra": "denyaokhra.png",
+    "kelmafm": "kelmafm.png",
+    "lbc": "lbc.png",
+    "lbcsat": "lbcsat.png",
+    "motorvision": "motorvision.png",
+    "mtunisia": "mtunisia.png",
+    "nbcgolf": "nbcgolf.png",
+    "nsibtila3ziza": "nsibtila3ziza.png",
+    "osnlifestylenetwork": "osnlifestylenetwork.png",
+    "osnmoviesthriller": "osnmoviesthriller.png",
+    "osnondemand": "osnondemand.png",
+    "osnsportsaction1": "osnsportsaction1.png",
+    "osnsportsaction2": "osnsportsaction2.png",
+    "osnsportsaction3": "osnsportsaction3.png",
+    "osnsportsaction4": "osnsportsaction4.png",
+    "osnsportsaction5": "osnsportsaction5.png",
+    "osnsportsactioncricket": "osnsportsactioncricket.png",
+    "radiohawana": "radiohawana.png",
+    "radiokelmafm": "radiokelmafm.png",
+    "radioulyssefm": "radioulyssefm.png",
+    "romatv": "romatv.png",
+    "seeviialoula": "seeviialoula.png",
+    "seeviibelink": "seeviibelink.png",
+    "seeviidrama": "seeviidrama.png",
+    "seeviiprime1": "seeviiprime1.png",
+    "seeviiprime2": "seeviiprime2.png",
+    "seeviiprime3": "seeviiprime3.png",
+    "seeviishamiya": "seeviishamiya.png",
+    "sevillachannel": "sevillachannel.png",
+    "sevillatv": "sevillatv.png",
+    "telemaroc": "telemaroc.png",
+    "toktokaflam": "toktokaflam.png",
+    "tv5fbs": "tv5fbs.png",
+    "ulyssefm": "ulyssefm.png",
+    "venus": "venus.png"
+  }
+}

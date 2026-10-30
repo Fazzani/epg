@@ -1,3 +1,7 @@
 .mypy_cache/
 .vscode/
 .env
+.venv/
+__pycache__/
+dist/
+build/

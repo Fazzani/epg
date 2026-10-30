@@ -1,0 +1,42 @@
+name: Logo catalog
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install locked dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Check Python formatting
+        run: python -m black --check --workers 1 update_index.py import_radios.py import_wikimedia.py upsert_wikimedia.py tests/
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate images and checked-in outputs
+        run: python update_index.py --check
+      - name: Build catalog artifacts
+        run: |
+          python update_index.py --output-dir build
+          python update_index.py --output-dir build --check
+          git diff --exit-code
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: logo-catalog-${{ github.event.pull_request.head.sha || github.sha }}
+          path: build/
+          if-no-files-found: error

@@ -1,0 +1,356 @@
+{
+  "collisions": [
+    {
+      "name": "abudhabisports3",
+      "images": [
+        "abudhabisports3.jpg",
+        "abudhabisports3.png"
+      ],
+      "preferred": "abudhabisports3.png"
+    },
+    {
+      "name": "abudhabisports3hd",
+      "images": [
+        "abudhabisports3hd.jpg",
+        "abudhabisports3hd.png"
+      ],
+      "preferred": "abudhabisports3hd.png"
+    },
+    {
+      "name": "bayern",
+      "images": [
+        "bayern.jpg",
+        "bayern.png"
+      ],
+      "preferred": "bayern.png"
+    },
+    {
+      "name": "bayernfctv",
+      "images": [
+        "bayernfctv.jpg",
+        "bayernfctv.png"
+      ],
+      "preferred": "bayernfctv.png"
+    },
+    {
+      "name": "be1",
+      "images": [
+        "be1.gif",
+        "be1.png"
+      ],
+      "preferred": "be1.png"
+    },
+    {
+      "name": "becine",
+      "images": [
+        "becine.gif",
+        "becine.png"
+      ],
+      "preferred": "becine.png"
+    },
+    {
+      "name": "chouflihal",
+      "images": [
+        "chouflihal.jpg",
+        "chouflihal.png"
+      ],
+      "preferred": "chouflihal.png"
+    },
+    {
+      "name": "comedieplus",
+      "images": [
+        "comedieplus.jpg",
+        "comedieplus.png"
+      ],
+      "preferred": "comedieplus.png"
+    },
+    {
+      "name": "demain",
+      "images": [
+        "demain.jpg",
+        "demain.png"
+      ],
+      "preferred": "demain.png"
+    },
+    {
+      "name": "denyaokhra",
+      "images": [
+        "denyaokhra.jpg",
+        "denyaokhra.png"
+      ],
+      "preferred": "denyaokhra.png"
+    },
+    {
+      "name": "kelmafm",
+      "images": [
+        "kelmafm.jpg",
+        "kelmafm.png"
+      ],
+      "preferred": "kelmafm.png"
+    },
+    {
+      "name": "lbc",
+      "images": [
+        "lbc.jpg",
+        "lbc.png"
+      ],
+      "preferred": "lbc.png"
+    },
+    {
+      "name": "lbcsat",
+      "images": [
+        "lbcsat.jpg",
+        "lbcsat.png"
+      ],
+      "preferred": "lbcsat.png"
+    },
+    {
+      "name": "motorvision",
+      "images": [
+        "motorvision.jpg",
+        "motorvision.png"
+      ],
+      "preferred": "motorvision.png"
+    },
+    {
+      "name": "mtunisia",
+      "images": [
+        "mtunisia.jpg",
+        "mtunisia.png"
+      ],
+      "preferred": "mtunisia.png"
+    },
+    {
+      "name": "nbcgolf",
+      "images": [
+        "nbcgolf.jpg",
+        "nbcgolf.png"
+      ],
+      "preferred": "nbcgolf.png"
+    },
+    {
+      "name": "nsibtila3ziza",
+      "images": [
+        "nsibtila3ziza.jpg",
+        "nsibtila3ziza.png"
+      ],
+      "preferred": "nsibtila3ziza.png"
+    },
+    {
+      "name": "osnlifestylenetwork",
+      "images": [
+        "osnlifestylenetwork.jpg",
+        "osnlifestylenetwork.png"
+      ],
+      "preferred": "osnlifestylenetwork.png"
+    },
+    {
+      "name": "osnmoviesthriller",
+      "images": [
+        "osnmoviesthriller.jpg",
+        "osnmoviesthriller.png"
+      ],
+      "preferred": "osnmoviesthriller.png"
+    },
+    {
+      "name": "osnondemand",
+      "images": [
+        "osnondemand.jpg",
+        "osnondemand.png"
+      ],
+      "preferred": "osnondemand.png"
+    },
+    {
+      "name": "osnsportsaction1",
+      "images": [
+        "osnsportsaction1.jpg",
+        "osnsportsaction1.png"
+      ],
+      "preferred": "osnsportsaction1.png"
+    },
+    {
+      "name": "osnsportsaction2",
+      "images": [
+        "osnsportsaction2.jpg",
+        "osnsportsaction2.png"
+      ],
+      "preferred": "osnsportsaction2.png"
+    },
+    {
+      "name": "osnsportsaction3",
+      "images": [
+        "osnsportsaction3.jpg",
+        "osnsportsaction3.png"
+      ],
+      "preferred": "osnsportsaction3.png"
+    },
+    {
+      "name": "osnsportsaction4",
+      "images": [
+        "osnsportsaction4.jpg",
+        "osnsportsaction4.png"
+      ],
+      "preferred": "osnsportsaction4.png"
+    },
+    {
+      "name": "osnsportsaction5",
+      "images": [
+        "osnsportsaction5.jpg",
+        "osnsportsaction5.png"
+      ],
+      "preferred": "osnsportsaction5.png"
+    },
+    {
+      "name": "osnsportsactioncricket",
+      "images": [
+        "osnsportsactioncricket.jpg",
+        "osnsportsactioncricket.png"
+      ],
+      "preferred": "osnsportsactioncricket.png"
+    },
+    {
+      "name": "radiohawana",
+      "images": [
+        "radiohawana.jpg",
+        "radiohawana.png"
+      ],
+      "preferred": "radiohawana.png"
+    },
+    {
+      "name": "radiokelmafm",
+      "images": [
+        "radiokelmafm.jpg",
+        "radiokelmafm.png"
+      ],
+      "preferred": "radiokelmafm.png"
+    },
+    {
+      "name": "radioulyssefm",
+      "images": [
+        "radioulyssefm.jpg",
+        "radioulyssefm.png"
+      ],
+      "preferred": "radioulyssefm.png"
+    },
+    {
+      "name": "romatv",
+      "images": [
+        "romatv.jpg",
+        "romatv.png"
+      ],
+      "preferred": "romatv.png"
+    },
+    {
+      "name": "seeviialoula",
+      "images": [
+        "seeviialoula.jpg",
+        "seeviialoula.png"
+      ],
+      "preferred": "seeviialoula.png"
+    },
+    {
+      "name": "seeviibelink",
+      "images": [
+        "seeviibelink.jpg",
+        "seeviibelink.png"
+      ],
+      "preferred": "seeviibelink.png"
+    },
+    {
+      "name": "seeviidrama",
+      "images": [
+        "seeviidrama.jpg",
+        "seeviidrama.png"
+      ],
+      "preferred": "seeviidrama.png"
+    },
+    {
+      "name": "seeviiprime1",
+      "images": [
+        "seeviiprime1.jpg",
+        "seeviiprime1.png"
+      ],
+      "preferred": "seeviiprime1.png"
+    },
+    {
+      "name": "seeviiprime2",
+      "images": [
+        "seeviiprime2.jpg",
+        "seeviiprime2.png"
+      ],
+      "preferred": "seeviiprime2.png"
+    },
+    {
+      "name": "seeviiprime3",
+      "images": [
+        "seeviiprime3.jpg",
+        "seeviiprime3.png"
+      ],
+      "preferred": "seeviiprime3.png"
+    },
+    {
+      "name": "seeviishamiya",
+      "images": [
+        "seeviishamiya.jpg",
+        "seeviishamiya.png"
+      ],
+      "preferred": "seeviishamiya.png"
+    },
+    {
+      "name": "sevillachannel",
+      "images": [
+        "sevillachannel.jpg",
+        "sevillachannel.png"
+      ],
+      "preferred": "sevillachannel.png"
+    },
+    {
+      "name": "sevillatv",
+      "images": [
+        "sevillatv.jpg",
+        "sevillatv.png"
+      ],
+      "preferred": "sevillatv.png"
+    },
+    {
+      "name": "telemaroc",
+      "images": [
+        "telemaroc.jpg",
+        "telemaroc.png"
+      ],
+      "preferred": "telemaroc.png"
+    },
+    {
+      "name": "toktokaflam",
+      "images": [
+        "toktokaflam.jpg",
+        "toktokaflam.png"
+      ],
+      "preferred": "toktokaflam.png"
+    },
+    {
+      "name": "tv5fbs",
+      "images": [
+        "tv5fbs.jpg",
+        "tv5fbs.png"
+      ],
+      "preferred": "tv5fbs.png"
+    },
+    {
+      "name": "ulyssefm",
+      "images": [
+        "ulyssefm.jpg",
+        "ulyssefm.png"
+      ],
+      "preferred": "ulyssefm.png"
+    },
+    {
+      "name": "venus",
+      "images": [
+        "venus.jpg",
+        "venus.png"
+      ],
+      "preferred": "venus.png"
+    }
+  ]
+}

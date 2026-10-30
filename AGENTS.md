@@ -3,36 +3,31 @@
 ## Périmètre et références
 
 - Préférer une petite modification cohérente suivant les conventions existantes.
-- Avant toute modification, lire [README.md](README.md), le
-  [guide Wikimedia](sources/wikimedia/README.md) et les manifestes concernés :
-  `logo_manifest.json`, `sources/radios/manifest.json` et
-  `sources/wikimedia/manifest.json`.
+- Avant toute modification, lire [README.md](README.md) et
+  `logo_manifest.json` ; consulter la provenance archivée si nécessaire.
 - Examiner les scripts, leurs appelants et les tests existants avant de changer
   une règle. Préserver les modifications locales sans rapport avec la demande.
 
 ## Source de vérité et génération
 
-- Les manifestes sources, les originaux et les règles Python sont les entrées.
+- Le manifeste, les logos et les règles Python sont les entrées.
   Modifier ces entrées ou les règles, puis régénérer les sorties avec
   `python update_catalog.py`.
-- Cette commande orchestre le rapprochement radio, puis `update_index.py`, puis
-  `build_client_catalog.py`. La génération et son contrôle restent hors réseau.
+- Cette commande orchestre `update_index.py`, puis `build_client_catalog.py`.
+  La génération et son contrôle restent hors réseau.
+- Pour récupérer un fichier Commons ou Wikipédia en français, utiliser
+  `fetch_wikimedia_logo.py` selon le README ; cet import réseau est distinct de
+  la génération et ne qualifie pas automatiquement une chaîne.
 - Ne pas éditer à la main `index_picons.json`, les fichiers `catalog*.json`,
-  `credits.client.v1.json`, `logosClient/`, `reports/`,
-  `sources/wikimedia/selections.json` ou `sources/wikimedia/upserts.json`.
+  `logosClient/` ou `reports/`.
   Le manifeste de publication `catalog.release.v1.json` est également généré ;
-  conserver ses SHA-256 du catalogue client et des crédits cohérents avec leurs octets.
-- Ne pas utiliser de LLM pour décider des rapprochements ni ajouter une sélection
-  manuelle pour contourner les seuils, marges, exclusions ou contrôles du pipeline.
-  Une ambiguïté doit conduire à une abstention. Corriger la source ou la règle
-  déterministe, avec un cas de régression, puis relancer la génération.
-- Les imports réseau (`import_radios.py`, `import_wikimedia.py`) et les remplacements
-  Wikimedia sont des opérations distinctes ; consulter les guides avant de les lancer.
+  conserver son SHA-256 du catalogue client cohérent avec ses octets.
+- Ne pas utiliser de LLM pour décider des rapprochements. Une ambiguïté doit
+  conduire à une abstention ; conserver les preuves pour toute nouvelle association.
 - Préserver les originaux, leurs empreintes, les sauvegardes historiques, les
   attributions, les licences, les identités stables et la provenance. Ne pas déduire
   un pays ou une identité du préfixe d'une station ou d'un simple nom de fichier.
-  Les catégories pays Commons explicites sont traitées selon les règles du script,
-  pas comme une preuve géographique pour toutes les stations d'une collection.
+  Les anciennes données et sauvegardes sont conservées dans l'archive de provenance.
 
 ## Vérifications
 
@@ -43,7 +38,8 @@ Commandes de référence, depuis la racine ; voir aussi `.github/workflows/catal
 python update_catalog.py
 python update_catalog.py --check
 python -m unittest discover -s tests -v
-python -m black --check --workers 1 update_catalog.py update_index.py build_client_catalog.py import_radios.py import_wikimedia.py upsert_wikimedia.py match_radio_logos.py tests/
+python -m black --check --workers 1 update_catalog.py update_index.py build_client_catalog.py rename_hd_logos.py fetch_wikimedia_logo.py tests/
+sha256sum -c provenance-archive.sha256
 git diff --check
 ```
 

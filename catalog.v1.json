@@ -1184,6 +1184,46 @@
       "logo": "logosChannels/mbcmax.png"
     },
     {
+      "id": "tv.xx.rmc-sport-1",
+      "name": "RMC Sport 1",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/rmc-sport-1-2026.png"
+    },
+    {
+      "id": "tv.xx.rmc-sport-2",
+      "name": "RMC Sport 2",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/rmc-sport-2-2018.png"
+    },
+    {
+      "id": "tv.xx.rmc-sport-3",
+      "name": "RMC Sport 3",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/rmc-sport-3-2018.png"
+    },
+    {
+      "id": "tv.xx.rmc-sport-4",
+      "name": "RMC Sport 4",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/rmc-sport-4-2018.png"
+    },
+    {
+      "id": "tv.xx.rmc-sport-news",
+      "name": "RMC Sport News",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/rmc-sport-news-2018.png"
+    },
+    {
       "id": "tv.xx.wanasah",
       "name": "Wanasah",
       "type": "tv",

@@ -2,85 +2,31 @@
 
 import argparse
 import hashlib
-from html.parser import HTMLParser
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from PIL import Image, ImageOps
 
 from update_index import image_metadata, read_json, validate_entry
-from upsert_wikimedia import checked_path
 
 SIZES = (128, 256)
 IDENTITY_FIELDS = ("id", "name", "type", "country", "aliases")
-CHANGES = (
-    "PNG normalisé ; réduction proportionnelle selon la taille, sans agrandissement."
-)
 
 
-class CreditText(HTMLParser):
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.parts = []
-
-    def handle_data(self, data):
-        self.parts.append(data)
-
-    def handle_starttag(self, tag, attrs):
-        self.parts.append(" ")
-
-    def handle_endtag(self, tag):
-        self.parts.append(" ")
-
-
-def plain_text(value):
-    parser = CreditText()
-    parser.feed(value)
-    return " ".join("".join(parser.parts).split())
-
-
-def credit_sources(root):
-    sources = {}
-    radio_path = root / "sources/radios/manifest.json"
-    if radio_path.exists():
-        for station in read_json(radio_path)["stations"]:
-            sources[station["id"]] = {
-                "logo": station["logo"],
-                "sha256": station["logo_sha256"],
-                "title": station["name"],
-                "source_url": station["page_url"],
-                "artist": "",
-                "credit": "",
-                "license": "",
-                "license_url": "",
-                "attribution_required": None,
-            }
-    selection_path = root / "sources/wikimedia/selections.json"
-    if selection_path.exists():
-        assets = {
-            asset["page_id"]: asset
-            for asset in read_json(root / "sources/wikimedia/manifest.json")["assets"]
-        }
-        seen = set()
-        for selection in read_json(selection_path)["entries"]:
-            identity = selection["id"]
-            if identity in seen:
-                raise ValueError(f"Duplicate selected credit identity: {identity}")
-            seen.add(identity)
-            asset = assets[selection["page_id"]]
-            sources[identity] = {
-                "logo": selection["logo"],
-                "sha256": asset["logo_sha256"],
-                "title": asset["title"],
-                "source_url": asset["description_url"],
-                "artist": plain_text(asset["artist"]),
-                "credit": plain_text(asset["credit"]),
-                "license": plain_text(asset["license_short_name"]),
-                "license_url": asset["license_url"],
-                "attribution_required": asset["attribution_required"],
-            }
-    return sources
+def checked_path(root, relative):
+    if not isinstance(relative, str):
+        raise ValueError("Image path must be a string")
+    path = PurePosixPath(relative)
+    if path.is_absolute() or ".." in path.parts or path.as_posix() != relative:
+        raise ValueError(f"Unsafe image path: {relative}")
+    full = root / relative
+    for parent in [full, *full.parents]:
+        if parent == root:
+            break
+        if parent.is_symlink():
+            raise ValueError(f"Symlink image path: {relative}")
+    return full
 
 
 def json_bytes(document):
@@ -99,8 +45,7 @@ def build_outputs(root):
         or not isinstance(catalog.get("entries"), list)
     ):
         raise ValueError("Source catalog requires schema_version 1 and an entries list")
-    sources = credit_sources(root)
-    files, entries, credits = {}, [], []
+    files, entries = {}, []
     seen = set()
     for entry in catalog["entries"]:
         if not isinstance(entry, dict) or not isinstance(entry.get("logo"), str):
@@ -110,12 +55,7 @@ def build_outputs(root):
         if len(Path(logo).parts) != 2 or Path(logo).parts[0] != "logosChannels":
             raise ValueError(f"Invalid source logo path: {logo}")
         validate_entry(entry, {logo}, seen)
-        metadata = image_metadata(path, logo)
-        source = sources.get(entry["id"])
-        if source is not None and (
-            source["logo"] != logo or source["sha256"] != metadata["sha256"]
-        ):
-            raise ValueError(f"Source credit image differs from catalog: {entry['id']}")
+        image_metadata(path, logo)
         variants = {}
         with Image.open(path) as image:
             image.seek(0)
@@ -141,43 +81,15 @@ def build_outputs(root):
         entries.append(
             {**{field: entry[field] for field in IDENTITY_FIELDS}, "variants": variants}
         )
-        credit = {
-            "id": entry["id"],
-            "name": entry["name"],
-            "title": "",
-            "source_url": "",
-            "artist": "",
-            "credit": "",
-            "license": "",
-            "license_url": "",
-            "attribution_required": None,
-            "changes": CHANGES,
-        }
-        if source is not None:
-            credit.update(
-                {
-                    field: value
-                    for field, value in source.items()
-                    if field not in ("logo", "sha256")
-                }
-            )
-        credits.append(credit)
     entries.sort(key=lambda entry: entry["id"])
-    credits.sort(key=lambda entry: entry["id"])
     files["catalog.client.v1.json"] = json_bytes(
         {"schema_version": 1, "entries": entries}
-    )
-    files["credits.client.v1.json"] = json_bytes(
-        {"schema_version": 1, "entries": credits}
     )
     files["catalog.release.v1.json"] = json_bytes(
         {
             "schema_version": 1,
             "catalog_sha256": hashlib.sha256(
                 files["catalog.client.v1.json"]
-            ).hexdigest(),
-            "credits_sha256": hashlib.sha256(
-                files["credits.client.v1.json"]
             ).hexdigest(),
         }
     )
@@ -214,7 +126,7 @@ def main():
         files = build_outputs(root)
         publish(files, args.output_dir or root, check=args.check)
         print(
-            f"Client outputs {'validated' if args.check else 'generated'}: {len(files) - 2} PNGs, catalog and credits"
+            f"Client outputs {'validated' if args.check else 'generated'}: {len(files) - 2} PNGs, catalog and release"
         )
     except (ValueError, OSError, KeyError, TypeError) as error:
         parser.exit(1, f"{error}\n")

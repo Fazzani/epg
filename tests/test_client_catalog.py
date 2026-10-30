@@ -93,16 +93,17 @@ class ClientCatalogTests(unittest.TestCase):
         self.assertEqual(len({variant["path"] for variant in variants}), 1)
         self.assertEqual(len([path for path in files if path.endswith(".png")]), 1)
 
-    def test_release_checksums_bind_catalog_and_credits(self):
+    def test_release_checksum_binds_catalog_without_credits(self):
         self.image()
         files = self.build()
         release = self.document(files, "catalog.release.v1.json")
         self.assertEqual(release["schema_version"], 1)
-        for key, path in (
-            ("catalog_sha256", "catalog.client.v1.json"),
-            ("credits_sha256", "credits.client.v1.json"),
-        ):
-            self.assertEqual(release[key], hashlib.sha256(files[path]).hexdigest())
+        self.assertEqual(
+            release["catalog_sha256"],
+            hashlib.sha256(files["catalog.client.v1.json"]).hexdigest(),
+        )
+        self.assertNotIn("credits_sha256", release)
+        self.assertNotIn("credits.client.v1.json", files)
 
     def test_changed_logo_changes_only_its_variant_revisions(self):
         first = self.image()
@@ -131,37 +132,6 @@ class ClientCatalogTests(unittest.TestCase):
             MODULE.publish(files, target, check=True)
         self.assertEqual(path.read_bytes(), b"corrupt")
 
-    def test_credits_keep_identity_source_license_and_remove_html(self):
-        source = self.image()
-        folder = self.root / "sources" / "wikimedia"
-        folder.mkdir(parents=True)
-        asset = {
-            "page_id": 42,
-            "logo_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
-            "title": "File:Example.png",
-            "description_url": "https://commons.wikimedia.org/wiki/File:Example.png",
-            "artist": '<a href="https://example.com">Alice &amp; Bob</a>',
-            "credit": "<b>Original</b> credit",
-            "license_short_name": "CC BY 4.0",
-            "license_url": "https://creativecommons.org/licenses/by/4.0/",
-            "attribution_required": True,
-        }
-        (folder / "manifest.json").write_text(json.dumps({"assets": [asset]}))
-        (folder / "selections.json").write_text(
-            json.dumps({"entries": [dict(self.entries[0], page_id=42)]})
-        )
-        credits = self.document(self.build(), "credits.client.v1.json")["entries"]
-        self.assertEqual(credits[0]["artist"], "Alice & Bob")
-        self.assertEqual(credits[0]["credit"], "Original credit")
-        self.assertEqual(credits[0]["license"], "CC BY 4.0")
-        self.assertTrue(credits[0]["attribution_required"])
-        self.assertEqual(credits[0]["source_url"], asset["description_url"])
-        self.assertTrue(credits[0]["changes"])
-        asset["logo_sha256"] = "wrong"
-        (folder / "manifest.json").write_text(json.dumps({"assets": [asset]}))
-        with self.assertRaisesRegex(ValueError, "credit image differs"):
-            self.build()
-
     def test_rejects_unsafe_paths_invalid_images_and_duplicate_ids(self):
         source = self.image()
         self.entries[0]["logo"] = "../outside.png"
@@ -176,54 +146,12 @@ class ClientCatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "example.png"):
             self.build()
 
-    def test_selected_radio_credit_comes_from_wikimedia(self):
-        source = self.image(identity="radio.tn.example")
-        self.entries[0].update(type="radio", country=None, aliases=[])
-        radios = self.root / "sources/radios"
-        radios.mkdir(parents=True)
-        (radios / "manifest.json").write_text(
-            json.dumps(
-                {
-                    "stations": [
-                        {
-                            "id": "radio.tn.example",
-                            "name": "Example",
-                            "logo": "logosChannels/old.png",
-                            "logo_sha256": "old",
-                            "page_url": "https://example.com/radio",
-                        }
-                    ]
-                }
-            )
-        )
-        wiki = self.root / "sources/wikimedia"
-        wiki.mkdir(parents=True)
-        asset = {
-            "page_id": 42,
-            "logo_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
-            "title": "File:Example.png",
-            "description_url": "https://commons.wikimedia.org/wiki/File:Example.png",
-            "artist": "Artist",
-            "credit": "Source",
-            "license_short_name": "CC BY 4.0",
-            "license_url": "https://creativecommons.org/licenses/by/4.0/",
-            "attribution_required": True,
-        }
-        (wiki / "manifest.json").write_text(json.dumps({"assets": [asset]}))
-        (wiki / "selections.json").write_text(
-            json.dumps({"entries": [dict(self.entries[0], page_id=42)]})
-        )
-        credit = self.document(self.build(), "credits.client.v1.json")["entries"][0]
-        self.assertEqual(credit["source_url"], asset["description_url"])
-        self.assertEqual(credit["license"], "CC BY 4.0")
-
     def test_cli_separate_outputs_leave_source_catalogs_and_images_unchanged(self):
         self.image()
         self.build()
         for name in (
             "build_client_catalog.py",
             "update_index.py",
-            "upsert_wikimedia.py",
         ):
             (self.root / name).write_bytes((ROOT / name).read_bytes())
         before = {

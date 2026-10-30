@@ -3,6 +3,42 @@ title: Changelog
 description: Changements du catalogue de logos TV et radio et de ses outils de publication.
 ---
 
+## 2026-10-30 — Import ponctuel de logos Wikimedia
+
+### Fonctionnel
+
+- Récupération de logos depuis Commons ou Wikipédia en français et ajout de
+  six variantes DAZN à l'index, sans créer d'identité sur un nom ambigu.
+
+### Technique
+
+- Conversion en PNG optimisé, limitée à 1 024 pixels, avec protection des
+  fichiers existants et génération du catalogue hors réseau inchangée.
+
+### Tests validés
+
+- Suite de 63 tests automatisés validée, avec un test ignoré faute de privilège
+  Windows pour les liens symboliques ; formatage et génération sans dérive validés.
+
+## 2026-10-30 : simplification de la génération
+
+- Les médias actuels et les empreintes de leurs logos sont conservés dans le
+  manifeste unique. La génération ne dépend plus des imports ni de leurs données.
+- Les originaux, sauvegardes, attributions, anciennes preuves et outils d'import
+  sont conservés dans une archive dont l'empreinte est vérifiée par la CI.
+
+## 2026-10-30 : simplification du catalogue client
+
+- Le catalogue client ne publie plus de fichier de crédits ; le manifeste de
+  publication vérifie uniquement l'empreinte du catalogue. Les attributions
+  et licences restent disponibles dans les manifestes sources.
+
+## 2026-10-30 : retrait du suffixe HD des logos
+
+- Les noms de logos terminés par `hd` sont raccourcis ; lorsqu'un fichier du
+  même nom sans suffixe et de même extension existe déjà, la variante HD est
+  supprimée. Les sélections Wikimedia et les sorties du catalogue sont actualisées.
+
 ## 2026-10-30 : audit programmatique des autres radios
 
 - Dix alias supplémentaires produits par règles génériques pour IFM, Misk FM,

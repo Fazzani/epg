@@ -1,16 +1,14 @@
-"""Update or verify radio associations, catalogs, reports and client PNGs offline."""
+"""Update or verify catalogs, reports and client PNGs offline."""
 
 import argparse
 from pathlib import Path
 
 import build_client_catalog
-import match_radio_logos
 import update_index
 
 
 def run(root, check=False):
     root = Path(root).resolve()
-    report = match_radio_logos.run(root, apply=not check, check=check)
     outputs = update_index.build_outputs(root)
     if check:
         update_index.check_outputs(outputs, root)
@@ -19,7 +17,6 @@ def run(root, check=False):
     build_client_catalog.publish(
         build_client_catalog.build_outputs(root), root, check=check
     )
-    return report
 
 
 def main():
@@ -31,12 +28,10 @@ def main():
     )
     args = parser.parse_args()
     try:
-        report = run(Path(__file__).resolve().parent, check=args.check)
+        run(Path(__file__).resolve().parent, check=args.check)
     except (OSError, ValueError, KeyError) as error:
         parser.exit(1, f"Catalog pipeline failed: {error}\n")
-    print(
-        f"Catalog pipeline {'validated' if args.check else 'updated'}: {report['accepted_count']} accepted, including {report['discovered_count']} new radio identities"
-    )
+    print(f"Catalog pipeline {'validated' if args.check else 'updated'}")
 
 
 if __name__ == "__main__":

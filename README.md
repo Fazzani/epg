@@ -14,6 +14,9 @@ Branche suivie par le badge : `master`.
 | --- | --- |
 | [index_picons.json](index_picons.json) | Index compatible : `{"name": ["fichier.png", ...]}`. |
 | [catalog.v1.json](catalog.v1.json) | Identités et métadonnées des médias qualifiés. |
+| [catalog.client.v1.json](catalog.client.v1.json) | Catalogue à embarquer dans une application, avec PNG en 128 et 256 pixels maximum. |
+| [credits.client.v1.json](credits.client.v1.json) | Crédits en texte et liens source/licence pour ces médias. |
+| [logosClient/](logosClient/) | PNG adressés par leur SHA-256, chargés à la demande. |
 | [logosChannels/](logosChannels/) | Images référencées par les deux catalogues. |
 | [logo_manifest.json](logo_manifest.json) | Médias historiques identifiés et préférences des collisions. |
 | [sources/radios/manifest.json](sources/radios/manifest.json) | Stations importées, provenance et sommes SHA-256. |
@@ -44,7 +47,9 @@ les catalogues et rapports aux fichiers versionnés. Il ne contacte aucun site.
 
 Les manifestes sont les sources de métadonnées. Le générateur lit les images et
 les manifestes, puis produit les deux catalogues et les quatre rapports JSON.
-Il ne modifie aucune image. Les téléchargements et les remplacements déclarés
+Il ne modifie aucune image. `build_client_catalog.py` génère séparément les
+variantes destinées aux applications et leurs crédits, depuis les seuls médias
+du catalogue v1. Les téléchargements et les remplacements déclarés
 appartiennent aux commandes d’import, lancées séparément.
 
 Les 44 collisions historiques ont une préférence explicite dans
@@ -110,6 +115,46 @@ optionnelle au logo. Il ne remplace pas les identifiants des chaînes, des stati
 Radio Browser ou des favoris existants. Une correspondance ambiguë entre noms,
 pays ou types doit rester sans résultat.
 
+### Catalogue client et images à la demande
+
+`catalog.client.v1.json` conserve `id`, `name`, `type`, `country` et `aliases`
+du catalogue v1. Chaque entrée remplace `logo` par `variants`, avec deux clés
+`"128"` et `"256"`. Une variante contient :
+
+```json
+{
+  "path": "logosClient/<sha256>.png",
+  "sha256": "<sha256 des octets PNG>",
+  "width": 128,
+  "height": 72,
+  "bytes": 4567
+}
+```
+
+Ces valeurs illustrent le format ; les dimensions et le poids réels figurent
+dans le fichier généré. Le côté le plus long ne dépasse pas la taille choisie.
+Les proportions et la transparence sont conservées, sans agrandissement ni
+ajout de marges. Les deux tailles peuvent partager le même fichier lorsque la
+source est petite ; les images identiques sont également dédupliquées.
+
+Une application peut embarquer ce catalogue et les crédits avec sa version,
+puis télécharger les PNG selon ses besoins. Pour les URL Raw GitHub, épingler
+séparément le SHA du commit contenant le catalogue **et** ses PNG :
+`https://raw.githubusercontent.com/Fazzani/epg/<commit>/<path>`.
+Le manifeste conserve des chemins relatifs et n’intègre pas le SHA de son propre
+commit. Utiliser le SHA-256 de la variante comme clé de cache permet de réutiliser
+une image inchangée entre deux versions du catalogue. Vérifier ce SHA et `bytes`
+sur les octets téléchargés avant de les conserver.
+
+`credits.client.v1.json` contient une entrée par média : `id`, `name`, `title`,
+`source_url`, `artist`, `credit`, `license`, `license_url`,
+`attribution_required` et `changes`. Les champs de texte ne contiennent pas de
+balisage HTML. Les URL renvoient à la page source et à sa licence déclarée ;
+les informations non établies restent vides ou `null`. Le fichier peut être
+embarqué tel quel ou transformé en page de crédits lors de la compilation.
+`changes` décrit la normalisation PNG et la réduction éventuelle. Les données
+complètes de provenance restent dans les manifestes des collections.
+
 ### Rapports
 
 - `reports/images.json` : format réellement décodé, dimensions, nombre de trames,
@@ -132,12 +177,23 @@ python update_index.py
 python update_index.py --check
 python update_index.py --output-dir dist
 python update_index.py --output-dir dist --check
+python build_client_catalog.py
+python build_client_catalog.py --check
+python build_client_catalog.py --output-dir dist
+python build_client_catalog.py --output-dir dist --check
 ```
 
 Sans option, la génération actualise les deux catalogues et les quatre rapports à
 la racine du dépôt. `--output-dir` place ces sorties dans un autre dossier ;
 `--check` compare sans écrire. Les fichiers existants dans ce dossier portant
 les mêmes noms sont remplacés lors d’une génération.
+
+Après une actualisation des sources, générer d’abord le catalogue v1 avec
+`update_index.py`, puis les sorties client avec `build_client_catalog.py`. Cette
+seconde commande ne modifie ni les index existants ni les images sources. Elle
+écrit les deux manifestes client et leurs PNG ; `--check` compare chaque fichier
+attendu, y compris les octets des images, sans écrire. Les anciennes images
+adressées par contenu ne sont pas supprimées automatiquement.
 
 ### Actualiser les radios
 
@@ -174,7 +230,8 @@ nouvelle licence.
 
 Le workflow `Logo catalog` s’exécute sur pull request, push vers `master` et
 lancement manuel. Il vérifie le formatage, les tests et les sorties versionnées,
-puis génère et publie un artefact contenant les catalogues et rapports. Le job
+puis génère et publie un artefact contenant les catalogues, rapports, crédits
+client et PNG de `logosClient/`. Le job
 d’une pull request vérifie le commit de sa branche source.
 
 La validation ne contacte ni les sources radio ni Wikimedia et n’utilise aucun secret Gist. Elle
@@ -210,9 +267,10 @@ enrichir une radio importée, modifier son entrée dans le manifeste de radios ;
 les identifiants, pays confirmés et alias sont conservés lors des actualisations.
 
 ```sh
-python -m black --workers 1 update_index.py import_radios.py import_wikimedia.py upsert_wikimedia.py tests/
+python -m black --workers 1 update_index.py build_client_catalog.py import_radios.py import_wikimedia.py upsert_wikimedia.py tests/
 python -m unittest discover -s tests -v
 python update_index.py --check
+python build_client_catalog.py --check
 git diff --check
 ```
 

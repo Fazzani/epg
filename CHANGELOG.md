@@ -3,6 +3,31 @@ title: Changelog
 description: Changements du catalogue de logos TV et radio et de ses outils de publication.
 ---
 
+## 2026-10-30 : catalogue client et PNG pour les applications
+
+### Fonctionnel
+
+- Catalogue client séparé pour les 143 médias qualifiés, avec variantes PNG de
+  128 et 256 pixels maximum et crédits en texte avec liens vers les sources.
+- Images téléchargeables à la demande depuis une révision Git immuable ;
+  empreinte et poids disponibles pour valider le téléchargement et son cache.
+
+### Technique
+
+- Génération locale sans réseau, sans agrandissement, avec proportions et
+  transparence conservées. Les 276 PNG distincts sont adressés par leur SHA-256 ;
+  les petites sources et les images identiques partagent leurs fichiers.
+- Index historique, catalogue v1 et images sources conservés. Les sorties client
+  disposent de leur propre commande de génération et de contrôle octet par octet.
+- Artefact CI enrichi avec le manifeste client, les crédits et les PNG.
+
+### Tests validés
+
+- `python -m unittest discover -s tests -v` : 61 tests réussis, dont sept nouveaux
+  contrôles des variantes, du cache par contenu, des crédits, des fichiers
+  manquants ou corrompus et de la génération sans modification des sources.
+- Black sur les nouveaux fichiers Python et `git diff --check` réussis.
+
 ## 2026-10-30 : import Wikimedia et upsert des logos
 
 ### Fonctionnel

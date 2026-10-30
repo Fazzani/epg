@@ -39,6 +39,8 @@ CATEGORIES = [
     "Category:Logos of television channels in Saudi Arabia",
     "Category:Logos of television channels in Tunisia",
     "Category:SVG logos of DAZN",
+    "Category:Radio station logos of France",
+    "Category:Radio station logos of Tunisia",
 ]
 
 
@@ -200,13 +202,38 @@ def convert_image(data):
 def convert_asset(info, original, fetch):
     mime = info["mime"]
     if mime != "image/svg+xml":
-        converted = convert_image(original)
         expected = {
             "image/png": "PNG",
             "image/jpeg": "JPEG",
             "image/gif": "GIF",
             "image/webp": "WEBP",
         }.get(mime)
+        if not expected:
+            raise ValueError(f"Unsupported source MIME: {mime}")
+        if info["width"] * info["height"] > Image.MAX_IMAGE_PIXELS:
+            # Inspect the header only; decode Wikimedia's bounded rendering instead.
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", Image.DecompressionBombWarning)
+                with Image.open(io.BytesIO(original)) as image:
+                    if image.format != expected or image.size != (
+                        info["width"],
+                        info["height"],
+                    ):
+                        raise ValueError(
+                            "Source MIME or dimensions disagree with metadata"
+                        )
+            thumbnail = checked_url(info.get("thumburl", ""))
+            converted = convert_image(fetch(thumbnail))
+            if abs(converted[2] / converted[3] - info["width"] / info["height"]) > 0.02:
+                raise ValueError(
+                    "Wikimedia raster rendering does not preserve proportions"
+                )
+            return (
+                (converted[0], expected, *converted[2:]),
+                FORMATS[expected],
+                thumbnail,
+            )
+        converted = convert_image(original)
         if converted[1] != expected:
             raise ValueError(f"Source MIME disagrees with decoded format: {mime}")
         return converted, FORMATS[converted[1]], ""

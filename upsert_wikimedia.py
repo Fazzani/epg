@@ -25,13 +25,14 @@ def checked_path(root, relative):
     return full
 
 
-def prepare_upserts(root, manifest, files):
+def prepare_upserts(root, manifest, files, selections=None):
     """Validate all selections, then return their PNGs and original backups."""
     root = Path(root)
     selection_path = root / "sources/wikimedia/selections.json"
-    if not selection_path.exists():
-        return {}
-    selections = json.loads(selection_path.read_text(encoding="utf-8"))
+    if selections is None:
+        if not selection_path.exists():
+            return {}
+        selections = json.loads(selection_path.read_text(encoding="utf-8"))
     if not isinstance(selections, dict) or not isinstance(
         selections.get("entries"), list
     ):
@@ -67,9 +68,12 @@ def prepare_upserts(root, manifest, files):
         identity = entry.get("id")
         if (
             not isinstance(identity, str)
-            or not re.fullmatch(r"tv\.[a-z]{2}\.[a-z0-9]+(?:-[a-z0-9]+)*", identity)
+            or not re.fullmatch(
+                r"(tv|radio)\.[a-z]{2}\.[a-z0-9]+(?:-[a-z0-9]+)*", identity
+            )
             or identity in identities
-            or entry.get("type") != "tv"
+            or entry.get("type") not in ("tv", "radio")
+            or not identity.startswith(entry.get("type", "") + ".")
         ):
             raise ValueError(
                 f"Invalid or duplicate selected media identity: {identity}"
@@ -105,6 +109,8 @@ def prepare_upserts(root, manifest, files):
         ):
             raise ValueError(f"{identity}: legacy_paths must be a list of paths")
         requested = [entry.get("logo"), *legacy_paths]
+        if entry["type"] == "radio" and requested != [asset["logo"]]:
+            raise ValueError(f"{identity}: radio selection must use its Wikimedia PNG")
         if any(not isinstance(target, str) for target in requested):
             raise ValueError(f"{identity}: upsert target must be a path string")
         for target in dict.fromkeys(requested):

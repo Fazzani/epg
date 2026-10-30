@@ -5,10 +5,9 @@ description: Importer les collections Wikimedia, choisir leurs logos et conserve
 
 # Logos Wikimedia Commons
 
-Cette collection contient **241 fichiers de logos**, leurs originaux et une
-version PNG pour les lecteurs multimédias. Les six catégories demandées et leurs
-sous-catégories ont fourni 245 fichiers uniques ; quatre éléments sans rapport
-avec un logo de chaîne sont exclus explicitement.
+Cette collection contient **625 fichiers**, leurs originaux et une
+version PNG pour les lecteurs multimédias. Les huit catégories et leurs
+sous-catégories ont fourni 630 fichiers uniques ; cinq sont exclus explicitement.
 
 ## Collections
 
@@ -20,6 +19,8 @@ avec un logo de chaîne sont exclus explicitement.
 | [Logos des chaînes en Arabie saoudite](https://commons.wikimedia.org/wiki/Category:Logos_of_television_channels_in_Saudi_Arabia) | Arabie saoudite |
 | [Logos des chaînes en Tunisie](https://commons.wikimedia.org/wiki/Category:Logos_of_television_channels_in_Tunisia) | Tunisie |
 | [Logos SVG DAZN](https://commons.wikimedia.org/wiki/Category:SVG_logos_of_DAZN) | DAZN |
+| [Logos des radios en France](https://commons.wikimedia.org/wiki/Category:Radio_station_logos_of_France) | France, radio |
+| [Logos des radios en Tunisie](https://commons.wikimedia.org/wiki/Category:Radio_station_logos_of_Tunisia) | Tunisie, radio |
 
 Une image présente dans plusieurs catégories n’est importée qu’une fois. Les
 anciens logos, variantes de couleur et logos de réseau restent disponibles comme
@@ -32,11 +33,12 @@ le nom `commons-<page_id>.png`. Les médias qualifiés sont accessibles dans le
 [catalogue v1](../../catalog.v1.json) avec une identité indépendante de l’image.
 La règle de résolution des URL est documentée dans le [README principal](../../README.md).
 
-Les originaux sont conservés dans [originals/](originals/), dont **60 SVG**.
+Les originaux sont conservés dans [originals/](originals/), dont **112 SVG**.
 Git les traite comme des fichiers binaires pour conserver exactement leurs
 octets, y compris leurs fins de ligne. Leurs empreintes contrôlent cette intégrité.
 Les PNG ont un côté maximal de 1 024 pixels. Les images raster ne sont pas
-agrandies ; les rendus des SVG proviennent du serveur Wikimedia. Les proportions
+agrandies ; les rendus des SVG et des raster dépassant 40 millions de pixels
+proviennent du serveur Wikimedia. Les proportions
 et la transparence effective sont contrôlées lors de la validation locale.
 
 ## Aperçu de la sélection
@@ -59,6 +61,12 @@ Une sélection met à jour ces chemins avec le même PNG. Les anciens octets son
 conservés dans [legacy-originals/](legacy-originals/), avec leur SHA-256 dans
 [upserts.json](upserts.json).
 
+Pour une radio existante, la sélection utilise directement le PNG Commons et
+conserve le fichier `radio-tn-` et sa provenance. Elle doit reprendre exactement
+l’identité et les métadonnées de la station existante.
+Une nouvelle identité peut aussi être produite par la découverte automatique
+décrite ci-dessous ; sa justification est recalculée lors de la validation.
+
 L’identifiant `page_id` reste la clé d’upsert du fichier Commons, y compris lorsque
 son titre ou sa révision change. L’identifiant `id` reste celui du média. Une
 nouvelle révision actualise le PNG sans changer ces identifiants ni les chemins
@@ -78,14 +86,99 @@ Les sources Commons sont communautaires. La sélection documente le fichier
 retenu et ne certifie pas qu’il représente l’habillage actuellement diffusé à
 l’antenne. Les anciens logos restent des variantes consultables.
 
+### Rapprochement automatique des radios
+
+```sh
+python match_radio_logos.py
+python match_radio_logos.py --apply
+python match_radio_logos.py --check
+```
+
+La première commande écrit uniquement [le rapport](../../reports/radio_matches.json).
+`--apply` remplace les sélections radio par les associations acceptées et actualise
+leur provenance d’upsert ; les sélections TV sont conservées. `--check` compare
+le rapport, les sélections et les fichiers d’upsert sans écrire. Après application,
+régénérer le catalogue et ses sorties client. Les modes sont exclusifs.
+
+Le calcul est local, sans réseau, LLM ou dépendance supplémentaire. Sa référence
+est toujours l’image du manifeste source des radios, jamais celle déjà sélectionnée
+dans le catalogue. Les noms, alias et derniers segments des URL sont comparés aux
+titres Commons après normalisation Unicode, casse, accents, ponctuation et retrait
+des mots isolés `file`, `logo`, `wikipedia`, `radio`, `fm`, `am`. Les nombres et
+qualificatifs des déclinaisons sont conservés. Le score de nom `N` est le meilleur
+minimum des deux sens de `SequenceMatcher`, sans heuristique automatique.
+
+Les images sont orientées selon EXIF et recadrées sur leur contenu transparent
+ou leur fond uniforme (tolérance de 12 niveaux). Elles sont centrées sans déformation
+en 64 × 64, sur fonds blanc et noir. Le score visuel `V` combine 60 % de similarité
+des couleurs (différence moyenne après flou gaussien de rayon 1) et 40 % de
+similarité dHash (64 bits, sur le fond blanc). Le score total est `S = 0,8 V + 0,2 N`.
+
+Le rapprochement exige `N`, `V` et `S` au moins égaux à 0,85, avec un écart de 0,06
+sur le second groupe distinct. Les candidats avec `N < 0,60` ne sont pas décodés.
+Les images aux pixels normalisés identiques forment un groupe : sa meilleure preuve
+textuelle sert au score ; sa surface utile, sa transparence puis le plus petit
+identifiant Commons déterminent le fichier retenu. Les scores ne sont pas des
+probabilités. Un conflit de pays explicites est bloquant ; les catégories radio
+France/Tunisie constituent une preuve du pays du fichier, les préfixes d’identifiants
+de station n’en constituent pas une. Un pays inconnu reste inconnu.
+
+Le rapport contient la version, les seuils, les empreintes des manifestes et des
+images comparées, les candidats, leurs scores, groupes et raisons de décision.
+Il est reproductible sans horodatage ni durée. Les signatures sont calculées une
+seule fois par fichier nécessaire et conservées en mémoire pendant l’exécution.
+Une image nécessaire vide, invalide ou dont l’empreinte diffère bloque la publication.
+
+La découverte traite séparément les stations encore absentes.
+Elle exige une description courte `Logo de NOM`, `Logo of NOM` ou `Logo NOM`, un
+nom contenant le mot isolé FM ou AM, un titre Commons concordant, une seule
+catégorie pays et un lien HTTPS de source déclarée dont le domaine est exactement
+le nom compact suivi de `.fr` ou `.tn` selon ce pays (avec `www.` facultatif).
+La version 3 reconnaît aussi les descriptions explicites `Logo de la station de
+radio NOM`, `Logo de la radio NOM` et `Logo of the radio station NOM`, sans exiger
+FM ou AM. Une simple description de groupe reste insuffisante. Les dates et les
+qualificatifs ne sont pas retirés pour faire correspondre un ancien logo.
+Les noms et alias déjà connus bloquent une nouvelle identité du même pays ou de
+pays inconnu. Plusieurs images éligibles différentes font également abstention.
+Les copies de même empreinte sont départagées par résolution, transparence et
+identifiant Commons. Cette règle n’atteste ni le caractère officiel réel du site
+ni l’actualité du logo ; elle enregistre la provenance déclarée par Commons.
+
+Le nom et le pays viennent ainsi des métadonnées, sans table de stations ni LLM.
+L’identifiant est `radio.<pays>.<nom normalisé avec tirets>`. Le catalogue valide
+de nouveau ces preuves avant d’accepter une nouvelle station. Les autres fichiers
+restent disponibles sans identité créée ; le script ne transforme pas tous les
+logos de groupes ou historiques en stations.
+
+Sur les 80 stations et 384 fichiers actuels, le calcul associe KnOOz FM
+(`39444265`) et crée Chérie FM (`144353906`, `radio.fr.cherie-fm`) et Bretagne 5
+(`71208971`, `radio.fr.bretagne-5`). IFM, Jawhara,
+Klem/Kelma et Radio Orient restent sous le seuil de rapprochement visuel.
+Le rapport distingue les rapprochements des créations et leurs motifs.
+
+### Audit des noms de station
+
+La génération du catalogue ajoute des alias sans modifier les manifestes sources :
+nom latin complet avant une traduction arabe, nom sans fréquence FM décimale
+comprise entre 65 et 108, ou retrait du préfixe `Radio` si le dernier segment de
+l’URL source confirme exactement le nom restant. Les nombres, signes `+`, noms
+de région et qualificatifs des webradios sont conservés. Un alias partagé avec
+une autre identité, y compris une autre proposition, n’est pas ajouté.
+
+`reports/radio_matches.json` consigne ces propositions dans `name_aliases`, avec
+la règle appliquée et les collisions éventuelles. Les rejets de découverte sont
+distingués : description non identifiable, type de station non confirmé, titre
+discordant, pays ambigu ou domaine source non concordant. Un rejet de variante
+Commons ne retire jamais le logo source déjà disponible pour une station.
+
 ## Actualisation
 
 Depuis la racine du dépôt, avec les dépendances de `requirements.txt` :
 
 ```sh
 python import_wikimedia.py
-python update_index.py
-python update_index.py --check
+python update_catalog.py
+python update_catalog.py --check
 ```
 
 L’API est parcourue avec sa pagination. Les téléchargements HTTPS restent limités
@@ -109,8 +202,8 @@ disparaissent des catégories ; une exclusion inconnue de l’inventaire est rej
 ## Couverture, exclusions et attribution
 
 - [inventory.json](inventory.json) : fichiers découverts, catégories et exclusions.
-- [exclusions.json](exclusions.json) : trois portraits et un logo de série animée,
-  avec leur justification et leur page source.
+- [exclusions.json](exclusions.json) : quatre fichiers hors sujet et un PNG
+  corrompu, avec leur justification et leur page source.
 - [manifest.json](manifest.json) : un enregistrement par fichier, avec artiste,
   crédit, licence déclarée, URL source, date de révision et empreintes.
 - [Rapport Wikimedia](../../reports/wikimedia.json) : couverture contrôlée,

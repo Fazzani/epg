@@ -14,6 +14,10 @@ Branche suivie par le badge : `master`.
 | --- | --- |
 | [index_picons.json](index_picons.json) | Index compatible : `{"name": ["fichier.png", ...]}`. |
 | [catalog.v1.json](catalog.v1.json) | Identités et métadonnées des médias qualifiés. |
+| [catalog.client.v1.json](catalog.client.v1.json) | Catalogue client pour les applications, avec PNG en 128 et 256 pixels maximum. |
+| [credits.client.v1.json](credits.client.v1.json) | Crédits en texte et liens source/licence pour ces médias. |
+| [catalog.release.v1.json](catalog.release.v1.json) | SHA-256 du catalogue client et des crédits, pour l’actualisation distante cohérente. |
+| [logosClient/](logosClient/) | PNG adressés par leur SHA-256, chargés à la demande. |
 | [logosChannels/](logosChannels/) | Images référencées par les deux catalogues. |
 | [logo_manifest.json](logo_manifest.json) | Médias historiques identifiés et préférences des collisions. |
 | [sources/radios/manifest.json](sources/radios/manifest.json) | Stations importées, provenance et sommes SHA-256. |
@@ -44,7 +48,9 @@ les catalogues et rapports aux fichiers versionnés. Il ne contacte aucun site.
 
 Les manifestes sont les sources de métadonnées. Le générateur lit les images et
 les manifestes, puis produit les deux catalogues et les quatre rapports JSON.
-Il ne modifie aucune image. Les téléchargements et les remplacements déclarés
+Il ne modifie aucune image. `build_client_catalog.py` génère séparément les
+variantes destinées aux applications et leurs crédits, depuis les seuls médias
+du catalogue v1. Les téléchargements et les remplacements déclarés
 appartiennent aux commandes d’import, lancées séparément.
 
 Les 44 collisions historiques ont une préférence explicite dans
@@ -89,6 +95,9 @@ de pays ou d’image. Sa forme est `tv.<espace>.<identité>` ou
 une métadonnée géographique. `type` vaut `tv` ou `radio`. `country` contient un
 code pays à deux lettres majuscules ou `null` lorsqu’il n’est pas établi.
 Les alias restent vides lorsqu’aucun autre nom n’est confirmé.
+Le pipeline dérive également les noms courts démontrables par le nom bilingue,
+la fréquence ou le chemin de la page source. Les collisions sont refusées et
+les décisions figurent dans `reports/radio_matches.json`, sous `name_aliases`.
 
 `logo` est un chemin exact relatif à la racine du dépôt. Pour construire une URL,
 utiliser la même révision Git pour le catalogue et ses images et encoder chaque
@@ -105,10 +114,55 @@ Pour une révision immuable, remplacer `master` par le SHA du commit. Une applic
 peut conserver `id` et résoudre son image depuis un catalogue plus récent. Elle
 doit alors renouveler son cache si le chemin ou la somme de l’image change.
 
-Dans une future intégration ViPlayer, cet identifiant représente une association
+Dans ViPlayer, cet identifiant représente une association
 optionnelle au logo. Il ne remplace pas les identifiants des chaînes, des stations
 Radio Browser ou des favoris existants. Une correspondance ambiguë entre noms,
 pays ou types doit rester sans résultat.
+
+### Catalogue client et images à la demande
+
+`catalog.client.v1.json` conserve `id`, `name`, `type`, `country` et `aliases`
+du catalogue v1. Chaque entrée remplace `logo` par `variants`, avec deux clés
+`"128"` et `"256"`. Une variante contient :
+
+```json
+{
+  "path": "logosClient/<sha256>.png",
+  "sha256": "<sha256 des octets PNG>",
+  "width": 128,
+  "height": 72,
+  "bytes": 4567
+}
+```
+
+Ces valeurs illustrent le format ; les dimensions et le poids réels figurent
+dans le fichier généré. Le côté le plus long ne dépasse pas la taille choisie.
+Les proportions et la transparence sont conservées, sans agrandissement ni
+ajout de marges. Les deux tailles peuvent partager le même fichier lorsque la
+source est petite ; les images identiques sont également dédupliquées.
+
+Une application peut charger le catalogue et les crédits à distance et les mettre
+en cache. `catalog.release.v1.json` contient leurs SHA-256 : vérifier les deux
+documents avant de remplacer un instantané valide. ViPlayer utilise cette méthode
+sur `master`, conserve le dernier instantané valide hors ligne et actualise son
+cache après six heures. Les anciens PNG adressés par contenu restent disponibles.
+
+Une application qui souhaite épingler une version peut aussi utiliser les URL Raw
+GitHub avec le SHA du commit contenant le catalogue **et** ses PNG :
+`https://raw.githubusercontent.com/Fazzani/epg/<commit>/<path>`.
+Le manifeste conserve des chemins relatifs et n’intègre pas le SHA de son propre
+commit. Utiliser le SHA-256 de la variante comme clé de cache permet de réutiliser
+une image inchangée entre deux versions du catalogue. Vérifier ce SHA et `bytes`
+sur les octets téléchargés avant de les conserver.
+
+`credits.client.v1.json` contient une entrée par média : `id`, `name`, `title`,
+`source_url`, `artist`, `credit`, `license`, `license_url`,
+`attribution_required` et `changes`. Les champs de texte ne contiennent pas de
+balisage HTML. Les URL renvoient à la page source et à sa licence déclarée ;
+les informations non établies restent vides ou `null`. Le fichier peut être
+embarqué tel quel ou transformé en page de crédits lors de la compilation.
+`changes` décrit la normalisation PNG et la réduction éventuelle. Les données
+complètes de provenance restent dans les manifestes des collections.
 
 ### Rapports
 
@@ -127,17 +181,41 @@ leur nom actuel. Un fichier illisible bloque la génération avec son chemin.
 
 ### Générer et vérifier
 
+La commande complète, également exécutée par la CI, est :
+
+```sh
+python update_catalog.py
+python update_catalog.py --check
+```
+
+Elle recalcule les rapprochements radio, ajoute les nouvelles identités dont les
+métadonnées sont concordantes, puis actualise les index, rapports, catalogue client,
+crédits et PNG. `--check` vérifie toutes ces étapes sans écrire. Les imports réseau
+restent explicites ; cette génération utilise les sources déjà présentes localement.
+Les commandes ci-dessous permettent de travailler sur une étape isolée.
+
 ```sh
 python update_index.py
 python update_index.py --check
 python update_index.py --output-dir dist
 python update_index.py --output-dir dist --check
+python build_client_catalog.py
+python build_client_catalog.py --check
+python build_client_catalog.py --output-dir dist
+python build_client_catalog.py --output-dir dist --check
 ```
 
 Sans option, la génération actualise les deux catalogues et les quatre rapports à
 la racine du dépôt. `--output-dir` place ces sorties dans un autre dossier ;
 `--check` compare sans écrire. Les fichiers existants dans ce dossier portant
 les mêmes noms sont remplacés lors d’une génération.
+
+Après une actualisation des sources, générer d’abord le catalogue v1 avec
+`update_index.py`, puis les sorties client avec `build_client_catalog.py`. Cette
+seconde commande ne modifie ni les index existants ni les images sources. Elle
+écrit les deux manifestes client et leurs PNG ; `--check` compare chaque fichier
+attendu, y compris les octets des images, sans écrire. Les anciennes images
+adressées par contenu ne sont pas supprimées automatiquement.
 
 ### Actualiser les radios
 
@@ -174,7 +252,8 @@ nouvelle licence.
 
 Le workflow `Logo catalog` s’exécute sur pull request, push vers `master` et
 lancement manuel. Il vérifie le formatage, les tests et les sorties versionnées,
-puis génère et publie un artefact contenant les catalogues et rapports. Le job
+puis génère et publie un artefact contenant les catalogues, rapports, crédits
+client et PNG de `logosClient/`. Le job
 d’une pull request vérifie le commit de sa branche source.
 
 La validation ne contacte ni les sources radio ni Wikimedia et n’utilise aucun secret Gist. Elle
@@ -186,14 +265,14 @@ génération dans `dist/`, sans traitement des images ni opération Git.
 
 ```sh
 python import_wikimedia.py
-python update_index.py
-python update_index.py --check
+python update_catalog.py
+python update_catalog.py --check
 ```
 
-L’import parcourt les six catégories configurées et leurs sous-catégories,
+L’import parcourt les huit catégories configurées et leurs sous-catégories,
 déduplique les fichiers par identifiant de page Commons et conserve les versions
 sources. Les PNG publiés ont un côté maximal de 1 024 pixels, sans déformation.
-Les rendus SVG sont fournis par Wikimedia ; aucun moteur SVG supplémentaire
+Les rendus SVG et les vignettes des très grandes images raster sont fournis par Wikimedia ; aucun moteur SVG supplémentaire
 n’est nécessaire localement.
 
 Les remplacements d’anciens chemins sont déclarés dans
@@ -201,6 +280,12 @@ Les remplacements d’anciens chemins sont déclarés dans
 remplacement. Il n’existe aucune association approximative par nom de fichier.
 Consulter le [guide Wikimedia et ses crédits](sources/wikimedia/README.md) pour
 la couverture, les exclusions et la sélection des variantes.
+
+Le rapprochement radio est calculé localement par scores de nom et d’image,
+avec abstention si les scores ou l’écart entre variantes sont insuffisants.
+`python match_radio_logos.py` écrit uniquement `reports/radio_matches.json` ;
+`--apply` actualise les sélections radio et `--check` vérifie leur cohérence.
+Le calcul conserve les identités et utilise les images sources comme référence.
 
 ## Contribution
 
@@ -210,9 +295,10 @@ enrichir une radio importée, modifier son entrée dans le manifeste de radios ;
 les identifiants, pays confirmés et alias sont conservés lors des actualisations.
 
 ```sh
-python -m black --workers 1 update_index.py import_radios.py import_wikimedia.py upsert_wikimedia.py tests/
+python -m black --workers 1 update_catalog.py update_index.py build_client_catalog.py import_radios.py import_wikimedia.py upsert_wikimedia.py match_radio_logos.py tests/
 python -m unittest discover -s tests -v
 python update_index.py --check
+python build_client_catalog.py --check
 git diff --check
 ```
 

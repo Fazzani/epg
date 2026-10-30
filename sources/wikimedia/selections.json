@@ -879,6 +879,42 @@
       "legacy_paths": [],
       "description_url": "https://commons.wikimedia.org/wiki/File:Wanasah_logo.png",
       "country_evidence": "Country intentionally unknown: category/market ambiguity; do not infer from source collection."
+    },
+    {
+      "id": "radio.tn.knooz-fm",
+      "name": "KnOOz FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "page_id": 39444265,
+      "logo": "logosChannels/commons-39444265.png",
+      "legacy_paths": [],
+      "description_url": "https://commons.wikimedia.org/wiki/File:WIKIPEDIA_KNOOZ.png",
+      "match_algorithm_version": 3
+    },
+    {
+      "id": "radio.fr.bretagne-5",
+      "name": "Bretagne 5",
+      "type": "radio",
+      "country": "FR",
+      "aliases": [],
+      "page_id": 71208971,
+      "logo": "logosChannels/commons-71208971.png",
+      "legacy_paths": [],
+      "description_url": "https://commons.wikimedia.org/wiki/File:Logo_Bretagne_5.svg",
+      "discovery": "commons-official-source-v1"
+    },
+    {
+      "id": "radio.fr.cherie-fm",
+      "name": "Chérie FM",
+      "type": "radio",
+      "country": "FR",
+      "aliases": [],
+      "page_id": 144353906,
+      "logo": "logosChannels/commons-144353906.png",
+      "legacy_paths": [],
+      "description_url": "https://commons.wikimedia.org/wiki/File:Logo_cheriefm.svg",
+      "discovery": "commons-official-source-v1"
     }
   ],
   "not_updated": [

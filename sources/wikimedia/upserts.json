@@ -218,6 +218,13 @@
       "previous_logo_sha256": null
     },
     {
+      "page_id": 144353906,
+      "logo": "logosChannels/commons-144353906.png",
+      "logo_sha256": "2281b9ceb786456470af374a827a79dcc6f6773d78b238266d204e1002f41b70",
+      "previous_logo": null,
+      "previous_logo_sha256": null
+    },
+    {
       "page_id": 152465311,
       "logo": "logosChannels/commons-152465311.png",
       "logo_sha256": "55a169cf8498d7e965aa39725c85de550bfafb7f1c3fa68f77b6f4776ab8f938",
@@ -295,6 +302,13 @@
       "previous_logo_sha256": null
     },
     {
+      "page_id": 39444265,
+      "logo": "logosChannels/commons-39444265.png",
+      "logo_sha256": "d830fb9b08baca5d664ffdee440d488c79a2ca43cd3d48a10d434bc5eff998bd",
+      "previous_logo": null,
+      "previous_logo_sha256": null
+    },
+    {
       "page_id": 52646495,
       "logo": "logosChannels/commons-52646495.png",
       "logo_sha256": "15701aba62cc907e29a4c742fbe6b0d69e984221f355271ba771dcb969668c78",
@@ -305,6 +319,13 @@
       "page_id": 52675875,
       "logo": "logosChannels/commons-52675875.png",
       "logo_sha256": "498f010d9e9a6c9164d193401dedfba9aefe4c4218e302d8235ad99ebdcc7c28",
+      "previous_logo": null,
+      "previous_logo_sha256": null
+    },
+    {
+      "page_id": 71208971,
+      "logo": "logosChannels/commons-71208971.png",
+      "logo_sha256": "a9107e716954d7bece9eb8e64be5b9f0111e4a3b0168622524c7a4b71760c0fa",
       "previous_logo": null,
       "previous_logo_sha256": null
     },

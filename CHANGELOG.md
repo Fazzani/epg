@@ -3,6 +3,86 @@ title: Changelog
 description: Changements du catalogue de logos TV et radio et de ses outils de publication.
 ---
 
+## 2026-10-30 : audit programmatique des autres radios
+
+- Dix alias supplémentaires produits par règles génériques pour IFM, Misk FM,
+  Radio Tunis Nationale, Radio Culture, Radio Gafsa, Radio Kef, Radio Monastir,
+  Radio Quran, Radio Sfax et Zitouna FM. Les identités et images restent conservées.
+- Découverte de Bretagne 5 par sa description explicite de station et ses preuves
+  concordantes ; les exigences de source, titre et pays sont conservées.
+- Rapport d’audit des alias et motifs de rejet détaillés. Les variantes Commons
+  différentes ou ambiguës ne remplacent pas les logos sources existants.
+
+## 2026-10-30 : publication distante et instructions agents
+
+- Manifeste `catalog.release.v1.json` généré avec les SHA-256 du catalogue client
+  et des crédits pour le cache distant de ViPlayer.
+- `AGENTS.md` impose le point d’entrée complet `update_catalog.py`, ses contrôles
+  et les règles de provenance aux interventions des agents IA.
+
+## 2026-10-30 : découverte et génération complète du catalogue
+
+- `update_catalog.py` enchaîne rapprochement, découverte des nouvelles stations,
+  index, rapports, catalogue client, crédits et PNG. La CI utilise cette même
+  commande et son mode de contrôle, puis rejette les sorties non versionnées à jour.
+- Création automatique de Chérie FM à partir de sa description, son titre, sa
+  catégorie et son lien source concordants ; aucune entrée Chérie ajoutée à la main.
+- Les variantes contradictoires ou métadonnées insuffisantes restent sans
+  création d’identité. Les correspondances existantes conservent leurs règles.
+
+## 2026-10-30 : rapprochement radio déterministe
+
+- Calcul local des associations par scores de noms et d’images, sans LLM, réseau
+  ni nouvelle dépendance ; abstention sur score faible ou variantes trop proches.
+- Rapport reproductible avec scores, empreintes et motifs ; modes rapport seul,
+  application et contrôle. Les sélections radio précédentes sont recalculées.
+- Contrôle ajouté à la CI et rapport inclus dans l’artefact du catalogue.
+- Sur 80 stations et 384 logos, une association acceptée (KnOOz FM) ; les cas
+  IFM, Jawhara, Klem/Kelma et Radio Orient restent sous le seuil visuel.
+- Temps mesuré : environ 2,8 secondes sous Windows et 7,9 secondes sous WSL.
+
+## 2026-10-30 : correspondances radio Wikimedia
+
+- Association du logo Commons de KnOOz FM à la station existante, avec ses
+  crédits et sans modifier son image source. Les variantes incertaines ou
+  anciennes restent disponibles sans association.
+- Contrôle des sélections radio et de l’identité existante ; ordre des fichiers
+  rendu identique sous Windows et Linux.
+
+## 2026-10-30 : logos radio Wikimedia
+
+- Import des catégories de radios françaises et tunisiennes et de leurs
+  sous-catégories : 384 fichiers supplémentaires, avec originaux et crédits.
+- Exclusion du PNG Black Box Bordeaux dont une somme de contrôle interne est
+  invalide. Les grandes images raster utilisent un rendu Wikimedia contrôlé.
+- Les variantes restent dans l’index historique ; leur association à une station
+  du catalogue nécessite une sélection vérifiée.
+
+## 2026-10-30 : catalogue client et PNG pour les applications
+
+### Fonctionnel
+
+- Catalogue client séparé pour les 143 médias qualifiés, avec variantes PNG de
+  128 et 256 pixels maximum et crédits en texte avec liens vers les sources.
+- Images téléchargeables à la demande depuis une révision Git immuable ;
+  empreinte et poids disponibles pour valider le téléchargement et son cache.
+
+### Technique
+
+- Génération locale sans réseau, sans agrandissement, avec proportions et
+  transparence conservées. Les 276 PNG distincts sont adressés par leur SHA-256 ;
+  les petites sources et les images identiques partagent leurs fichiers.
+- Index historique, catalogue v1 et images sources conservés. Les sorties client
+  disposent de leur propre commande de génération et de contrôle octet par octet.
+- Artefact CI enrichi avec le manifeste client, les crédits et les PNG.
+
+### Tests validés
+
+- `python -m unittest discover -s tests -v` : 61 tests réussis, dont sept nouveaux
+  contrôles des variantes, du cache par contenu, des crédits, des fichiers
+  manquants ou corrompus et de la génération sans modification des sources.
+- Black sur les nouveaux fichiers Python et `git diff --check` réussis.
+
 ## 2026-10-30 : import Wikimedia et upsert des logos
 
 ### Fonctionnel

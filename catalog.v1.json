@@ -2,6 +2,22 @@
   "schema_version": 1,
   "entries": [
     {
+      "id": "radio.fr.bretagne-5",
+      "name": "Bretagne 5",
+      "type": "radio",
+      "country": "FR",
+      "aliases": [],
+      "logo": "logosChannels/commons-71208971.png"
+    },
+    {
+      "id": "radio.fr.cherie-fm",
+      "name": "Chérie FM",
+      "type": "radio",
+      "country": "FR",
+      "aliases": [],
+      "logo": "logosChannels/commons-144353906.png"
+    },
+    {
       "id": "radio.tn.alhayet-fm",
       "name": "AlHayet FM",
       "type": "radio",
@@ -118,7 +134,9 @@
       "name": "IFM 100.6",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "IFM"
+      ],
       "logo": "logosChannels/radio-tn-ifm.png"
     },
     {
@@ -191,7 +209,7 @@
       "type": "radio",
       "country": null,
       "aliases": [],
-      "logo": "logosChannels/radio-tn-knooz-fm.png"
+      "logo": "logosChannels/commons-39444265.png"
     },
     {
       "id": "radio.tn.live-radio-jeunes-tunisie",
@@ -206,7 +224,9 @@
       "name": "Radio Tunis Nationale الإذاعة الوطنية التونسية",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Tunis Nationale"
+      ],
       "logo": "logosChannels/radio-tn-live-radio-tunis.png"
     },
     {
@@ -230,7 +250,9 @@
       "name": "Radio Misk FM",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Misk FM"
+      ],
       "logo": "logosChannels/radio-tn-misk-fm.png"
     },
     {
@@ -366,7 +388,9 @@
       "name": "Radio Culture الإذاعة الثقافية",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Culture"
+      ],
       "logo": "logosChannels/radio-tn-radio-culture.png"
     },
     {
@@ -374,7 +398,9 @@
       "name": "Radio Gafsa إذاعة قفصة",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Gafsa"
+      ],
       "logo": "logosChannels/radio-tn-radio-gafsa.png"
     },
     {
@@ -414,7 +440,9 @@
       "name": "Radio Kef إذاعة الكاف",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Kef"
+      ],
       "logo": "logosChannels/radio-tn-radio-le-kef.png"
     },
     {
@@ -438,7 +466,9 @@
       "name": "Radio Monastir إذاعة المنستير",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Monastir"
+      ],
       "logo": "logosChannels/radio-tn-radio-monastir.png"
     },
     {
@@ -486,7 +516,9 @@
       "name": "Radio Quran - إذاعة القرآن",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Quran"
+      ],
       "logo": "logosChannels/radio-tn-radio-quran.png"
     },
     {
@@ -494,7 +526,9 @@
       "name": "Radio Sfax إذاعة صفاقس",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Radio Sfax"
+      ],
       "logo": "logosChannels/radio-tn-radio-sfax.png"
     },
     {
@@ -558,7 +592,9 @@
       "name": "Zitouna FM إذاعة الزيتونة",
       "type": "radio",
       "country": null,
-      "aliases": [],
+      "aliases": [
+        "Zitouna FM"
+      ],
       "logo": "logosChannels/radio-tn-radio-zitouna.png"
     },
     {

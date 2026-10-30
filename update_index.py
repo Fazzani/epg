@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath
 import re
+import unicodedata
 from urllib.parse import urlsplit
 from xml.parsers import expat
 
@@ -20,6 +21,69 @@ IMAGE_FORMATS = {
     ".jfif": "JPEG",
 }
 PUBLIC_FIELDS = ("id", "name", "type", "country", "aliases", "logo")
+
+
+def radio_name_aliases(stations):
+    """Derive spelling aliases without dropping regional or stream qualifiers."""
+
+    def key(value):
+        value = unicodedata.normalize("NFKD", value.casefold())
+        return "".join(
+            c
+            for c in value
+            if (c.isalnum() or c == "+") and not unicodedata.combining(c)
+        )
+
+    proposed = {}
+    for station in stations:
+        name = station["name"].strip()
+        candidates = []
+        bilingual = re.fullmatch(
+            r"(.+?)[\s\-–—:|]+[\u0600-\u06ff][\u0600-\u06ff\s\d\-–—:|،]*", name
+        )
+        if (
+            bilingual
+            and any("LATIN" in unicodedata.name(c, "") for c in bilingual[1])
+            and not re.search(r"[\u0600-\u06ff]", bilingual[1])
+        ):
+            candidates.append((bilingual[1].strip(" -–—:|"), "bilingual_name"))
+        frequency = re.fullmatch(
+            r"(.+?)\s+(\d{2,3}[.,]\d{1,2})(?:\s*MHz)?", name, re.IGNORECASE
+        )
+        if frequency and 65 <= float(frequency[2].replace(",", ".")) <= 108:
+            candidates.append((frequency[1], "fm_frequency"))
+        slug = urlsplit(station.get("page_url", "")).path.rstrip("/").rsplit("/", 1)[-1]
+        if name.casefold().startswith("radio ") and key(name[6:]) == key(slug):
+            candidates.append((name[6:].strip(), "source_slug"))
+        proposed[station["id"]] = [
+            (alias, reason)
+            for alias, reason in candidates
+            if key(alias) not in {"", "radio", "fm", "am"} and key(alias) != key(name)
+        ]
+    occupied = defaultdict(set)
+    for station in stations:
+        for label in [
+            station["name"],
+            *station["aliases"],
+            *(alias for alias, _ in proposed[station["id"]]),
+        ]:
+            occupied[key(label)].add(station["id"])
+    enriched, audit = [], []
+    for station in sorted(stations, key=lambda s: s["id"]):
+        aliases = list(station["aliases"])
+        additions, rejected = [], []
+        for alias, reason in proposed[station["id"]]:
+            if len(occupied[key(alias)]) > 1:
+                rejected.append({"alias": alias, "reason": "ambiguous_name"})
+            elif key(alias) not in {key(a) for a in aliases}:
+                aliases.append(alias)
+                additions.append({"alias": alias, "reason": reason})
+        enriched.append(dict(station, aliases=aliases))
+        if additions or rejected:
+            audit.append(
+                {"id": station["id"], "added": additions, "rejected": rejected}
+            )
+    return enriched, audit
 
 
 def read_json(path):
@@ -528,9 +592,12 @@ def build_outputs(root):
     root = Path(root)
     folder = root / "logosChannels"
     candidates = sorted(
-        path
-        for path in folder.iterdir()
-        if path.is_file() and path.suffix.lower() in IMAGE_FORMATS
+        (
+            path
+            for path in folder.iterdir()
+            if path.is_file() and path.suffix.lower() in IMAGE_FORMATS
+        ),
+        key=lambda path: path.name,
     )
     metadata = []
     errors = []
@@ -581,10 +648,49 @@ def build_outputs(root):
         key=lambda entry: entry["id"],
     )
     by_id = {entry["id"]: entry for entry in catalog}
+    enriched, _ = radio_name_aliases(stations)
+    source_ids = {station["id"] for station in stations}
     for selection in wiki_selections:
         entry = {field: selection[field] for field in PUBLIC_FIELDS}
+        if entry["type"] == "radio":
+            existing = by_id.get(entry["id"])
+            if (
+                existing is None
+                and selection.get("discovery") == "commons-official-source-v1"
+            ):
+                from match_radio_logos import discover_radios
+
+                discovered, _ = discover_radios(
+                    enriched
+                    + [
+                        row
+                        for row in catalog
+                        if row["type"] == "radio" and row["id"] not in source_ids
+                    ],
+                    read_json(root / "sources/wikimedia/manifest.json")["assets"],
+                )
+                expected = next(
+                    (row for row in discovered if row["id"] == entry["id"]), None
+                )
+                if (
+                    expected is not None
+                    and all(expected[field] == entry[field] for field in PUBLIC_FIELDS)
+                    and expected["page_id"] == selection["page_id"]
+                ):
+                    existing = entry
+            if existing is None or any(
+                existing[field] != entry[field]
+                for field in PUBLIC_FIELDS
+                if field != "logo"
+            ):
+                raise ValueError(
+                    f"Wikimedia radio selection differs from existing station: {entry['id']}"
+                )
         by_id[entry["id"]] = entry
     catalog = sorted(by_id.values(), key=lambda entry: entry["id"])
+    for station in enriched:
+        entry = by_id[station["id"]]
+        entry["aliases"] = list(dict.fromkeys([*entry["aliases"], *station["aliases"]]))
     identified = {entry["logo"] for entry in catalog}
     return {
         "index_picons.json": {"name": [path.name for path in candidates]},

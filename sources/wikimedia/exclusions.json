@@ -1,6 +1,12 @@
 {
   "excluded": [
     {
+      "page_id": 88460262,
+      "title": "File:Black Box Bordeaux.png",
+      "reason": "Original PNG has an invalid iCCP chunk checksum and cannot be safely decoded.",
+      "description_url": "https://commons.wikimedia.org/wiki/File:Black_Box_Bordeaux.png"
+    },
+    {
       "page_id": 95810471,
       "title": "File:أحمد الزند - لقطة من مؤتمر بتاريخ 12-09-2014.png",
       "reason": "Photograph of Egyptian judge Ahmed El Zend, not a television logo.",

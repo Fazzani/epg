@@ -106,6 +106,19 @@ class UpsertTests(unittest.TestCase):
             self.prepare()
         self.assertEqual(target.read_bytes(), b"original")
 
+    def test_radio_selection_uses_commons_without_replacing_radio_import(self):
+        self.entry.update(
+            id="radio.tn.example",
+            type="radio",
+            logo=self.asset["logo"],
+            legacy_paths=[],
+        )
+        files = self.prepare()
+        self.assertEqual(files[self.asset["logo"]], self.png)
+        self.entry["logo"] = "logosChannels/radio-tn-example.png"
+        with self.assertRaisesRegex(ValueError, "radio selection"):
+            self.prepare()
+
     def test_removed_selection_retires_provenance_without_deleting_images(self):
         self.publish(self.prepare())
         target = self.root / self.entry["logo"]

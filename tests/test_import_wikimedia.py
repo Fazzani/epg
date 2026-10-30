@@ -100,6 +100,26 @@ class DiscoveryTests(unittest.TestCase):
 
 
 class ConversionTests(unittest.TestCase):
+    def test_large_raster_uses_bounded_wikimedia_rendering(self):
+        original = png_bytes((30, 12))
+        info = page()["imageinfo"][0]
+        info.update(
+            width=30, height=12, thumburl="https://thumb.wikimedia.org/logo.png"
+        )
+        with patch.object(Image, "MAX_IMAGE_PIXELS", 200):
+            converted, extension, rendered = convert_asset(
+                info, original, lambda url: png_bytes((15, 6))
+            )
+            self.assertEqual(
+                (converted[1], converted[2:4], extension, rendered),
+                ("PNG", (15, 6), ".png", info["thumburl"]),
+            )
+            with self.assertRaisesRegex(ValueError, "proportions"):
+                convert_asset(info, original, lambda url: png_bytes((10, 10)))
+            info["width"] = 31
+            with self.assertRaisesRegex(ValueError, "dimensions"):
+                convert_asset(info, original, lambda url: png_bytes((15, 6)))
+
     def test_raster_never_enlarges_and_preserves_alpha_and_ratio(self):
         for size, expected in (((30, 12), (30, 12)), ((2048, 512), (1024, 256))):
             with self.subTest(size=size):

@@ -326,6 +326,29 @@ class CatalogTests(unittest.TestCase):
         (folder / "inventory.json").write_text(json.dumps(inventory))
         return folder, manifest, inventory
 
+    def test_wikimedia_radio_selection_preserves_existing_station_identity(self):
+        path, manifest = self.radio_manifest()
+        path.write_text(json.dumps(manifest))
+        folder, _, _ = self.wikimedia_fixture()
+        station = manifest["stations"][0]
+        selection = {field: station[field] for field in MODULE.PUBLIC_FIELDS}
+        selection.update(page_id=123, logo="logosChannels/commons-123.png")
+        selection_path = folder / "selections.json"
+        selection_path.write_text(json.dumps({"entries": [selection]}))
+        entry = self.build()["catalog.v1.json"]["entries"][0]
+        self.assertEqual(
+            entry, {field: selection[field] for field in MODULE.PUBLIC_FIELDS}
+        )
+        selection["name"] = "Different station"
+        selection_path.write_text(json.dumps({"entries": [selection]}))
+        with self.assertRaisesRegex(ValueError, "differs from existing station"):
+            self.build()
+        selection["name"] = station["name"]
+        selection["id"] = "radio.xx.missing"
+        selection_path.write_text(json.dumps({"entries": [selection]}))
+        with self.assertRaisesRegex(ValueError, "differs from existing station"):
+            self.build()
+
     def test_wikimedia_offline_svg_provenance_and_coverage(self):
         folder, manifest, inventory = self.wikimedia_fixture(svg=True)
         outputs = self.build()

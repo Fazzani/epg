@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "radio.tn.alhayet-fm",
+      "name": "AlHayet FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-alhayet-fm.png"
+    },
+    {
+      "id": "radio.tn.ambiance-fm",
+      "name": "Ambiance FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-ambiance-fm.png"
+    },
+    {
+      "id": "radio.tn.banzart-fm",
+      "name": "Banzart FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-banzart-fm.png"
+    },
+    {
+      "id": "radio.tn.boukornine-radio",
+      "name": "Boukornine Radio",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-boukornine-radio.png"
+    },
+    {
+      "id": "radio.tn.cap-fm-ecouter-le-live",
+      "name": "Cap FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-cap-fm-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.chambi-fm-kasserine-ecouter-le-live",
+      "name": "Chaambi FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-chambi-fm-kasserine-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.data-fm",
+      "name": "Data Fm",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-data-fm.png"
+    },
+    {
+      "id": "radio.tn.diwan-fm",
+      "name": "Diwan FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-diwan-fm.png"
+    },
+    {
+      "id": "radio.tn.djerid-fm-ecouter-le-live",
+      "name": "Djerid",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-djerid-fm-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.dream-fm",
+      "name": "Dream FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-dream-fm.png"
+    },
+    {
+      "id": "radio.tn.el-ayam-fm",
+      "name": "El Ayam FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-el-ayam-fm.png"
+    },
+    {
+      "id": "radio.tn.elyssa-fm",
+      "name": "Elyssa FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-elyssa-fm.png"
+    },
+    {
+      "id": "radio.tn.express-fm",
+      "name": "Express FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-express-fm.png"
+    },
+    {
+      "id": "radio.tn.horria-fm",
+      "name": "Horria FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-horria-fm.png"
+    },
+    {
+      "id": "radio.tn.ifm",
+      "name": "IFM 100.6",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-ifm.png"
+    },
+    {
+      "id": "radio.tn.ifm-rire-chansons",
+      "name": "IFM Rire & Chansons",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-ifm-rire-chansons.png"
+    },
+    {
+      "id": "radio.tn.jawhara-clubbing-webradio",
+      "name": "Jawhara Clubbing Webradio",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-jawhara-clubbing-webradio.png"
+    },
+    {
+      "id": "radio.tn.jawhara-fm",
+      "name": "Jawhara FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-jawhara-fm.png"
+    },
+    {
+      "id": "radio.tn.jawhara-gold-webradio",
+      "name": "Jawhara Gold Webradio",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-jawhara-gold-webradio.png"
+    },
+    {
+      "id": "radio.tn.jawhara-hit-webradio",
+      "name": "Jawhara Hit Webradio",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-jawhara-hit-webradio.png"
+    },
+    {
+      "id": "radio.tn.jawhara-tounsi-webradio",
+      "name": "Jawhara Tounsi Webradio",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-jawhara-tounsi-webradio.png"
+    },
+    {
+      "id": "radio.tn.karama-fm-sidi-bouzid-ecouter-le-live",
+      "name": "Karama FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-karama-fm-sidi-bouzid-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.kif-fm",
+      "name": "Kif FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-kif-fm.png"
+    },
+    {
+      "id": "radio.tn.knooz-fm",
+      "name": "KnOOz FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-knooz-fm.png"
+    },
+    {
+      "id": "radio.tn.live-radio-jeunes-tunisie",
+      "name": "Radio Jeunes Tunisie",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-live-radio-jeunes-tunisie.png"
+    },
+    {
+      "id": "radio.tn.live-radio-tunis",
+      "name": "Radio Tunis Nationale الإذاعة الوطنية التونسية",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-live-radio-tunis.png"
+    },
+    {
+      "id": "radio.tn.live-rtci",
+      "name": "RTCI",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-live-rtci.png"
+    },
+    {
+      "id": "radio.tn.mfm-tunisie",
+      "name": "MFM Tunisie",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mfm-tunisie.png"
+    },
+    {
+      "id": "radio.tn.misk-fm",
+      "name": "Radio Misk FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-misk-fm.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm",
+      "name": "Mosaique FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm-dj",
+      "name": "Mosaique FM DJ",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm-dj.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm-espoir",
+      "name": "Mosaique FM Espoir",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm-espoir.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm-gold",
+      "name": "Mosaique FM Gold",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm-gold.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm-tarab",
+      "name": "Mosaique FM Tarab",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm-tarab.png"
+    },
+    {
+      "id": "radio.tn.mosaique-fm-tounsi",
+      "name": "Mosaique FM Tounsi",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mosaique-fm-tounsi.png"
+    },
+    {
+      "id": "radio.tn.mouja-fm",
+      "name": "Mouja FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-mouja-fm.png"
+    },
+    {
+      "id": "radio.tn.nancy-ajram",
+      "name": "Nancy Ajram",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-nancy-ajram.png"
+    },
+    {
+      "id": "radio.tn.nejma-fm",
+      "name": "Nejma FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-nejma-fm.png"
+    },
+    {
+      "id": "radio.tn.oasis-fm-gabes",
+      "name": "Oasis FM Gabes",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-oasis-fm-gabes.png"
+    },
+    {
+      "id": "radio.tn.one-fm",
+      "name": "One FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-one-fm.png"
+    },
+    {
+      "id": "radio.tn.oxygene-fm",
+      "name": "Oxygene FM Bizerte",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-oxygene-fm.png"
+    },
+    {
+      "id": "radio.tn.radio-6-tunis",
+      "name": "Radio 6",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-6-tunis.png"
+    },
+    {
+      "id": "radio.tn.radio-babnet-tunisie",
+      "name": "Babnet",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-babnet-tunisie.png"
+    },
+    {
+      "id": "radio.tn.radio-bizerte-ecouter-le-live",
+      "name": "Bizerte",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-bizerte-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.radio-bledi-ecouter-le-live",
+      "name": "Bledi",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-bledi-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.radio-culture",
+      "name": "Radio Culture الإذاعة الثقافية",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-culture.png"
+    },
+    {
+      "id": "radio.tn.radio-gafsa",
+      "name": "Radio Gafsa إذاعة قفصة",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-gafsa.png"
+    },
+    {
+      "id": "radio.tn.radio-jektiss-medenine-ecouter-le-live",
+      "name": "Jektiss",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-jektiss-medenine-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.radio-kairouan",
+      "name": "Radio Kairouan",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-kairouan.png"
+    },
+    {
+      "id": "radio.tn.radio-kalima",
+      "name": "Radio Kalima",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-kalima.png"
+    },
+    {
+      "id": "radio.tn.radio-kelma-fm",
+      "name": "Radio Kelma FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-kelma-fm.png"
+    },
+    {
+      "id": "radio.tn.radio-le-kef",
+      "name": "Radio Kef إذاعة الكاف",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-le-kef.png"
+    },
+    {
+      "id": "radio.tn.radio-maghreb-24-fm",
+      "name": "Radio Maghreb 24 FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-maghreb-24-fm.png"
+    },
+    {
+      "id": "radio.tn.radio-med-tunisie",
+      "name": "Radio Med Tunisie",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-med-tunisie.png"
+    },
+    {
+      "id": "radio.tn.radio-monastir",
+      "name": "Radio Monastir إذاعة المنستير",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-monastir.png"
+    },
+    {
+      "id": "radio.tn.radio-msaken-live",
+      "name": "Radio Msaken",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-msaken-live.png"
+    },
+    {
+      "id": "radio.tn.radio-nabeul-ecouter-le-live",
+      "name": "Nabeul",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-nabeul-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.radio-nefzawa",
+      "name": "Radio NEFZAWA",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-nefzawa.png"
+    },
+    {
+      "id": "radio.tn.radio-orient",
+      "name": "Radio Orient",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-orient.png"
+    },
+    {
+      "id": "radio.tn.radio-panorama",
+      "name": "Radio Panorama",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-panorama.png"
+    },
+    {
+      "id": "radio.tn.radio-quran",
+      "name": "Radio Quran - إذاعة القرآن",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-quran.png"
+    },
+    {
+      "id": "radio.tn.radio-sfax",
+      "name": "Radio Sfax إذاعة صفاقس",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-sfax.png"
+    },
+    {
+      "id": "radio.tn.radio-solo-sfax",
+      "name": "Radio Solo SFax",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-solo-sfax.png"
+    },
+    {
+      "id": "radio.tn.radio-tataouine",
+      "name": "Radio Tataouine",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-tataouine.png"
+    },
+    {
+      "id": "radio.tn.radio-tfm",
+      "name": "Radio TFM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-tfm.png"
+    },
+    {
+      "id": "radio.tn.radio-touma",
+      "name": "Touma",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-touma.png"
+    },
+    {
+      "id": "radio.tn.radio-tounesbledi-ecouter-le-live",
+      "name": "TounesBledi",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-tounesbledi-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.radio-tunisia-med",
+      "name": "Radio Tunisia Med",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-tunisia-med.png"
+    },
+    {
+      "id": "radio.tn.radio-web-tozeur",
+      "name": "Radio Tozeur",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-web-tozeur.png"
+    },
+    {
+      "id": "radio.tn.radio-zitouna",
+      "name": "Zitouna FM إذاعة الزيتونة",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-radio-zitouna.png"
+    },
+    {
+      "id": "radio.tn.ribat-fm",
+      "name": "Ribat FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-ribat-fm.png"
+    },
+    {
+      "id": "radio.tn.sabra-fm",
+      "name": "Sabra FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-sabra-fm.png"
+    },
+    {
+      "id": "radio.tn.salam-fm",
+      "name": "Salam FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-salam-fm.png"
+    },
+    {
+      "id": "radio.tn.saraha-fm-live-tunis",
+      "name": "Saraha FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-saraha-fm-live-tunis.png"
+    },
+    {
+      "id": "radio.tn.sawt-el-manajem-gafsa-ecouter-le-live",
+      "name": "Sawt El Manajem",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-sawt-el-manajem-gafsa-ecouter-le-live.png"
+    },
+    {
+      "id": "radio.tn.shems-fm",
+      "name": "Shems FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-shems-fm.png"
+    },
+    {
+      "id": "radio.tn.shems-fm-gold-live",
+      "name": "Shems Gold",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-shems-fm-gold-live.png"
+    },
+    {
+      "id": "radio.tn.sijal-fm",
+      "name": "Sijal FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-sijal-fm.png"
+    },
+    {
+      "id": "radio.tn.twenssa-fm",
+      "name": "Twenssa FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-twenssa-fm.png"
+    },
+    {
+      "id": "radio.tn.ulysse-fm-djerba-ecouter-le-live",
+      "name": "Ulysse FM",
+      "type": "radio",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/radio-tn-ulysse-fm-djerba-ecouter-le-live.png"
+    },
+    {
+      "id": "tv.fr.france-2",
+      "name": "France 2",
+      "type": "tv",
+      "country": "FR",
+      "aliases": [
+        "France2",
+        "France 2 HD",
+        "FR: France 2"
+      ],
+      "logo": "logosChannels/france2.png"
+    }
+  ]
+}

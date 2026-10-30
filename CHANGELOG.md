@@ -3,6 +3,39 @@ title: Changelog
 description: Changements du catalogue de logos TV et radio et de ses outils de publication.
 ---
 
+## 2026-10-30 : import Wikimedia et upsert des logos
+
+### Fonctionnel
+
+- Ajout de 241 fichiers de logos provenant des six catégories Commons demandées
+  et de leurs sous-catégories : Émirats arabes unis, Égypte, Arabie saoudite,
+  Tunisie et DAZN. Les originaux, dont 60 SVG, et leurs crédits sont conservés.
+- Qualification de 62 médias supplémentaires ; mise à jour de 73 chemins
+  historiques vérifiés avec sauvegarde des images précédentes. Quatorze
+  associations ambiguës restent inchangées.
+- README principal complété et guide Wikimedia avec aperçus, sources, licences
+  et procédure d’actualisation.
+
+### Technique
+
+- Import paginé et dédupliqué par identifiant de page Commons, contrôle de la
+  révision SHA-1 et des empreintes locales, SVG conservés et rendus PNG fournis
+  par Wikimedia. Les PNG ont un côté maximal de 1 024 pixels.
+- Les quatre fichiers hors sujet sont exclus explicitement de l’inventaire.
+  Les images retirées des catégories et les exclusions déjà connues restent
+  archivées ; retirer une sélection conserve sa provenance et ses fichiers.
+- Validation des sélections avant publication, contrôle des anciennes images
+  sauvegardées et ajout du rapport Wikimedia à la génération et aux artefacts CI.
+
+### Tests validés
+
+- `python -m unittest discover -s tests -v` : 54 tests réussis, couvrant les
+  mises à jour, les erreurs avant publication, la rétention et le retrait des
+  sélections, en plus des contrôles d’index et des radios.
+- Import complet de 241 fichiers avec empreintes source conformes à Commons ;
+  actualisation depuis le cache local sans réseau et sans différence d’octets.
+- Black sur les fichiers Python modifiés et contrôle des liens locaux des README.
+
 ## 2026-10-30 : catalogue versionné et radios
 
 ### Fonctionnel

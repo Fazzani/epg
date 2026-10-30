@@ -17,10 +17,12 @@ Branche suivie par le badge : `master`.
 | [logosChannels/](logosChannels/) | Images référencées par les deux catalogues. |
 | [logo_manifest.json](logo_manifest.json) | Médias historiques identifiés et préférences des collisions. |
 | [sources/radios/manifest.json](sources/radios/manifest.json) | Stations importées, provenance et sommes SHA-256. |
+| [sources/wikimedia/](sources/wikimedia/README.md) | Logos Commons, SVG originaux, crédits et remplacements vérifiés. |
 | [reports/](reports/) | Images validées, collisions et images restant à qualifier. |
 
-Le catalogue v1 commence par France 2 et les 80 stations de la grille principale
-de [Tunisie Radio](https://www.tunisie-radio.com/), webradios comprises. Les pays
+Le catalogue v1 contient France 2, les 80 stations de la grille principale
+de [Tunisie Radio](https://www.tunisie-radio.com/), webradios comprises, et les
+médias sélectionnés dans les collections Wikimedia. Les pays
 des radios restent `null` en attendant leur qualification. Leur présence sur ce
 site ne suffit pas à établir un pays.
 
@@ -41,9 +43,9 @@ les catalogues et rapports aux fichiers versionnés. Il ne contacte aucun site.
 ## Architecture
 
 Les manifestes sont les sources de métadonnées. Le générateur lit les images et
-les manifestes, puis produit les deux catalogues et les trois rapports JSON.
-Il ne modifie aucune image. Les téléchargements appartiennent exclusivement à
-la commande d’import, lancée séparément.
+les manifestes, puis produit les deux catalogues et les quatre rapports JSON.
+Il ne modifie aucune image. Les téléchargements et les remplacements déclarés
+appartiennent aux commandes d’import, lancées séparément.
 
 Les 44 collisions historiques ont une préférence explicite dans
 `preferred_images` : la variante PNG existante a été retenue. Toutes les variantes
@@ -114,6 +116,8 @@ pays ou types doit rester sans résultat.
   transparence effective et SHA-256 des images et des originaux importés.
 - `reports/collisions.json` : variantes et fichier préféré pour chaque collision.
 - `reports/unidentified.json` : chemins sans association à un média du catalogue.
+- `reports/wikimedia.json` : couverture des catégories Commons, exclusions
+  justifiées, sélections et métadonnées d’attribution de chaque fichier.
 
 Une extension différente du format réel est signalée par `extension_mismatch`.
 Les quatre fichiers historiques JPG contenant du PNG restent accessibles sous
@@ -130,7 +134,7 @@ python update_index.py --output-dir dist
 python update_index.py --output-dir dist --check
 ```
 
-Sans option, la génération actualise les deux catalogues et les trois rapports à
+Sans option, la génération actualise les deux catalogues et les quatre rapports à
 la racine du dépôt. `--output-dir` place ces sorties dans un autre dossier ;
 `--check` compare sans écrire. Les fichiers existants dans ce dossier portant
 les mêmes noms sont remplacés lors d’une génération.
@@ -173,10 +177,30 @@ lancement manuel. Il vérifie le formatage, les tests et les sorties versionnée
 puis génère et publie un artefact contenant les catalogues et rapports. Le job
 d’une pull request vérifie le commit de sa branche source.
 
-La validation ne télécharge pas les radios et n’utilise aucun secret Gist. Elle
+La validation ne contacte ni les sources radio ni Wikimedia et n’utilise aucun secret Gist. Elle
 dispose uniquement de la permission `contents: read` et ne publie aucun commit.
 Les scripts `trim_picons.sh` sont obsolètes : ils délèguent désormais à une
 génération dans `dist/`, sans traitement des images ni opération Git.
+
+### Actualiser les logos Wikimedia
+
+```sh
+python import_wikimedia.py
+python update_index.py
+python update_index.py --check
+```
+
+L’import parcourt les six catégories configurées et leurs sous-catégories,
+déduplique les fichiers par identifiant de page Commons et conserve les versions
+sources. Les PNG publiés ont un côté maximal de 1 024 pixels, sans déformation.
+Les rendus SVG sont fournis par Wikimedia ; aucun moteur SVG supplémentaire
+n’est nécessaire localement.
+
+Les remplacements d’anciens chemins sont déclarés dans
+`sources/wikimedia/selections.json`. Leur image précédente est sauvegardée avant
+remplacement. Il n’existe aucune association approximative par nom de fichier.
+Consulter le [guide Wikimedia et ses crédits](sources/wikimedia/README.md) pour
+la couverture, les exclusions et la sélection des variantes.
 
 ## Contribution
 
@@ -186,7 +210,7 @@ enrichir une radio importée, modifier son entrée dans le manifeste de radios ;
 les identifiants, pays confirmés et alias sont conservés lors des actualisations.
 
 ```sh
-python -m black --workers 1 update_index.py import_radios.py tests/
+python -m black --workers 1 update_index.py import_radios.py import_wikimedia.py upsert_wikimedia.py tests/
 python -m unittest discover -s tests -v
 python update_index.py --check
 git diff --check

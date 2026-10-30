@@ -642,6 +642,238 @@
       "logo": "logosChannels/radio-tn-ulysse-fm-djerba-ecouter-le-live.png"
     },
     {
+      "id": "tv.ae.abu-dhabi",
+      "name": "Abu Dhabi TV",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/abudhabitv.png"
+    },
+    {
+      "id": "tv.ae.abu-dhabi-drama",
+      "name": "Abu Dhabi Drama",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/abudhabidrama.png"
+    },
+    {
+      "id": "tv.ae.abu-dhabi-sports",
+      "name": "Abu Dhabi Sports",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/abudhabisports.png"
+    },
+    {
+      "id": "tv.ae.al-aan",
+      "name": "Al Aan TV",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/alaan.png"
+    },
+    {
+      "id": "tv.ae.al-emarat",
+      "name": "Al Emarat TV",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/alemarat.png"
+    },
+    {
+      "id": "tv.ae.dubai",
+      "name": "Dubai TV",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/dubai.png"
+    },
+    {
+      "id": "tv.ae.dubai-one",
+      "name": "Dubai One",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/dubai1.png"
+    },
+    {
+      "id": "tv.ae.majid",
+      "name": "Majid TV",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/commons-141910513.png"
+    },
+    {
+      "id": "tv.ae.sama-dubai",
+      "name": "Sama Dubai",
+      "type": "tv",
+      "country": "AE",
+      "aliases": [],
+      "logo": "logosChannels/samadubai.png"
+    },
+    {
+      "id": "tv.eg.al-hayah",
+      "name": "Al Hayah",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-192810587.png"
+    },
+    {
+      "id": "tv.eg.al-hayah-2",
+      "name": "Al Hayah 2",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-137660195.png"
+    },
+    {
+      "id": "tv.eg.al-hayah-cinema",
+      "name": "Al Hayah Cinema",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/alhayatcinema.png"
+    },
+    {
+      "id": "tv.eg.al-hayah-drama",
+      "name": "Al Hayah Drama",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/alhayatseries.png"
+    },
+    {
+      "id": "tv.eg.al-hayah-wal-nas",
+      "name": "Al Hayah Wal Nas",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-137660822.png"
+    },
+    {
+      "id": "tv.eg.al-masriyah",
+      "name": "Al Masriyah",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/almasriyaeg.png"
+    },
+    {
+      "id": "tv.eg.al-nas",
+      "name": "Al Nas",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-52675875.png"
+    },
+    {
+      "id": "tv.eg.cbc",
+      "name": "CBC",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/cbc.png"
+    },
+    {
+      "id": "tv.eg.cbc-drama",
+      "name": "CBC Drama",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/cbcdrama.png"
+    },
+    {
+      "id": "tv.eg.cbc-sofra",
+      "name": "CBC Sofra",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/cbcsofra.png"
+    },
+    {
+      "id": "tv.eg.dream-1",
+      "name": "Dream 1",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/dream1.png"
+    },
+    {
+      "id": "tv.eg.dream-2",
+      "name": "Dream 2",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/dreamtv2.png"
+    },
+    {
+      "id": "tv.eg.el-faraeen",
+      "name": "El Faraeen",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-52646495.png"
+    },
+    {
+      "id": "tv.eg.mehwar",
+      "name": "Mehwar TV",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/mehwar.png"
+    },
+    {
+      "id": "tv.eg.mekameleen",
+      "name": "Mekameleen",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/mekameleen.png"
+    },
+    {
+      "id": "tv.eg.nile-news",
+      "name": "Nile News",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/nilenews.png"
+    },
+    {
+      "id": "tv.eg.nile-sport",
+      "name": "Nile Sport",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/nilesport.png"
+    },
+    {
+      "id": "tv.eg.nile-tv",
+      "name": "Nile TV",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-163273273.png"
+    },
+    {
+      "id": "tv.eg.on",
+      "name": "ON",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/commons-114584779.png"
+    },
+    {
+      "id": "tv.eg.sada-el-balad",
+      "name": "Sada El Balad",
+      "type": "tv",
+      "country": "EG",
+      "aliases": [],
+      "logo": "logosChannels/sadaelbaladtv.png"
+    },
+    {
       "id": "tv.fr.france-2",
       "name": "France 2",
       "type": "tv",
@@ -652,6 +884,276 @@
         "FR: France 2"
       ],
       "logo": "logosChannels/france2.png"
+    },
+    {
+      "id": "tv.gb.dazn-6",
+      "name": "DAZN 6",
+      "type": "tv",
+      "country": "GB",
+      "aliases": [],
+      "logo": "logosChannels/commons-190633221.png"
+    },
+    {
+      "id": "tv.it.dazn-1-plus",
+      "name": "DAZN 1+",
+      "type": "tv",
+      "country": "IT",
+      "aliases": [],
+      "logo": "logosChannels/commons-190631038.png"
+    },
+    {
+      "id": "tv.it.dazn-channel",
+      "name": "DAZN Channel",
+      "type": "tv",
+      "country": "IT",
+      "aliases": [],
+      "logo": "logosChannels/commons-109366958.png"
+    },
+    {
+      "id": "tv.it.zona-dazn",
+      "name": "Zona DAZN",
+      "type": "tv",
+      "country": "IT",
+      "aliases": [],
+      "logo": "logosChannels/commons-121658241.png"
+    },
+    {
+      "id": "tv.sa.al-ekhbariya",
+      "name": "Al Ekhbariya",
+      "type": "tv",
+      "country": "SA",
+      "aliases": [],
+      "logo": "logosChannels/alekhbaria.png"
+    },
+    {
+      "id": "tv.sa.al-majd",
+      "name": "Al Majd",
+      "type": "tv",
+      "country": "SA",
+      "aliases": [],
+      "logo": "logosChannels/almajd.png"
+    },
+    {
+      "id": "tv.sa.al-saudiya",
+      "name": "Al Saudiya",
+      "type": "tv",
+      "country": "SA",
+      "aliases": [],
+      "logo": "logosChannels/saudi1.png"
+    },
+    {
+      "id": "tv.sa.quran",
+      "name": "Quran TV",
+      "type": "tv",
+      "country": "SA",
+      "aliases": [],
+      "logo": "logosChannels/saudichforquran.png"
+    },
+    {
+      "id": "tv.tn.first-tv",
+      "name": "First TV",
+      "type": "tv",
+      "country": "TN",
+      "aliases": [],
+      "logo": "logosChannels/firsttv.png"
+    },
+    {
+      "id": "tv.tn.nessma",
+      "name": "Nessma El Jadida",
+      "type": "tv",
+      "country": "TN",
+      "aliases": [],
+      "logo": "logosChannels/nessma.png"
+    },
+    {
+      "id": "tv.tn.tunisna",
+      "name": "Tunisna TV",
+      "type": "tv",
+      "country": "TN",
+      "aliases": [],
+      "logo": "logosChannels/tunisna.png"
+    },
+    {
+      "id": "tv.tn.watania-1",
+      "name": "Watania 1",
+      "type": "tv",
+      "country": "TN",
+      "aliases": [
+        "Télévision tunisienne 1",
+        "الوطنية 1"
+      ],
+      "logo": "logosChannels/watania1.png"
+    },
+    {
+      "id": "tv.tn.watania-2",
+      "name": "Watania 2",
+      "type": "tv",
+      "country": "TN",
+      "aliases": [
+        "Télévision tunisienne 2",
+        "الوطنية 2"
+      ],
+      "logo": "logosChannels/watania2.png"
+    },
+    {
+      "id": "tv.xx.al-arabiya",
+      "name": "Al Arabiya",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/alarabiya.png"
+    },
+    {
+      "id": "tv.xx.al-hadath",
+      "name": "Al Hadath",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/alarabiyaalhadath.png"
+    },
+    {
+      "id": "tv.xx.dazn-1",
+      "name": "DAZN 1",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-190633500.png"
+    },
+    {
+      "id": "tv.xx.dazn-2",
+      "name": "DAZN 2",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-190631238.png"
+    },
+    {
+      "id": "tv.xx.dazn-3",
+      "name": "DAZN 3",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-190632765.png"
+    },
+    {
+      "id": "tv.xx.dazn-4",
+      "name": "DAZN 4",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-190632983.png"
+    },
+    {
+      "id": "tv.xx.dazn-5",
+      "name": "DAZN 5",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-190633112.png"
+    },
+    {
+      "id": "tv.xx.dazn-f1",
+      "name": "DAZN F1",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-152465312.png"
+    },
+    {
+      "id": "tv.xx.dazn-laliga",
+      "name": "DAZN LaLiga",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/commons-152465311.png"
+    },
+    {
+      "id": "tv.xx.mbc-1",
+      "name": "MBC 1",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbc.png"
+    },
+    {
+      "id": "tv.xx.mbc-2",
+      "name": "MBC 2",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbc2.png"
+    },
+    {
+      "id": "tv.xx.mbc-3",
+      "name": "MBC 3",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbc3.png"
+    },
+    {
+      "id": "tv.xx.mbc-4",
+      "name": "MBC 4",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbc4.png"
+    },
+    {
+      "id": "tv.xx.mbc-action",
+      "name": "MBC Action",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcaction.png"
+    },
+    {
+      "id": "tv.xx.mbc-drama",
+      "name": "MBC Drama",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcdrama.png"
+    },
+    {
+      "id": "tv.xx.mbc-drama-plus",
+      "name": "MBC Drama Plus",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcdramaplus.png"
+    },
+    {
+      "id": "tv.xx.mbc-masr",
+      "name": "MBC Masr",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcmasr.png"
+    },
+    {
+      "id": "tv.xx.mbc-masr-2",
+      "name": "MBC Masr 2",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcmasr2.png"
+    },
+    {
+      "id": "tv.xx.mbc-max",
+      "name": "MBC Max",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/mbcmax.png"
+    },
+    {
+      "id": "tv.xx.wanasah",
+      "name": "Wanasah",
+      "type": "tv",
+      "country": null,
+      "aliases": [],
+      "logo": "logosChannels/wanasah.png"
     }
   ]
 }

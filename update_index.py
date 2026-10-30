@@ -7,6 +7,7 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 from urllib.parse import urlsplit
+from xml.parsers import expat
 
 from PIL import Image
 
@@ -101,7 +102,7 @@ def validate_entry(entry, image_paths, seen):
     return {field: entry[field] for field in PUBLIC_FIELDS}
 
 
-def source_file(root, relative):
+def source_file(root, relative, prefix=("sources", "radios", "originals")):
     if not isinstance(relative, str):
         raise ValueError("Original image path must be a string")
     path = PurePosixPath(relative)
@@ -109,7 +110,7 @@ def source_file(root, relative):
         path.is_absolute()
         or ".." in path.parts
         or path.as_posix() != relative
-        or path.parts[:3] != ("sources", "radios", "originals")
+        or path.parts[: len(prefix)] != prefix
     ):
         raise ValueError(f"Unsafe original image path: {relative!r}")
     full = root / relative
@@ -195,6 +196,334 @@ def radio_entries(root, image_metadata_by_path):
     return stations, [originals[key] for key in sorted(originals)]
 
 
+def svg_metadata(path, relative):
+    data = path.read_bytes()
+    root = []
+    parser = expat.ParserCreate(namespace_separator="}")
+
+    def reject_entity(*args):
+        raise ValueError("SVG entity declarations and external entities are forbidden")
+
+    def start_element(name, attributes):
+        if not root:
+            root.append((name, attributes))
+
+    parser.StartElementHandler = start_element
+    parser.EntityDeclHandler = reject_entity
+    parser.ExternalEntityRefHandler = reject_entity
+    parser.SetParamEntityParsing(expat.XML_PARAM_ENTITY_PARSING_NEVER)
+    try:
+        parser.Parse(data, True)
+    except (expat.ExpatError, ValueError) as error:
+        raise ValueError(f"{relative}: invalid SVG: {error}") from error
+    if not root or root[0][0] not in ("svg", "http://www.w3.org/2000/svg}svg"):
+        raise ValueError(f"{relative}: original XML root is not SVG")
+    attributes = root[0][1]
+    return {
+        "path": relative,
+        "format": "SVG",
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "declared_width": attributes.get("width"),
+        "declared_height": attributes.get("height"),
+        "view_box": attributes.get("viewBox"),
+    }
+
+
+def page_map(items, label):
+    if not isinstance(items, list):
+        raise ValueError(f"Wikimedia {label} must be a list")
+    result = {}
+    for item in items:
+        if (
+            not isinstance(item, dict)
+            or type(item.get("page_id")) is not int
+            or item["page_id"] <= 0
+        ):
+            raise ValueError(f"Wikimedia {label} requires positive integer page_id")
+        identity = item["page_id"]
+        if identity in result:
+            raise ValueError(f"Duplicate Wikimedia page_id in {label}: {identity}")
+        result[identity] = item
+    return result
+
+
+def wikimedia_entries(root, image_metadata_by_path):
+    folder = root / "sources" / "wikimedia"
+    empty_report = {
+        "schema_version": 1,
+        "categories": [],
+        "expected_count": 0,
+        "imported_count": 0,
+        "selected_media_count": 0,
+        "selected_path_count": 0,
+        "files": [],
+        "assets": [],
+        "excluded": [],
+    }
+    manifest_path = folder / "manifest.json"
+    inventory_path = folder / "inventory.json"
+    if not manifest_path.exists() and not inventory_path.exists():
+        if (folder / "selections.json").exists():
+            raise ValueError("Wikimedia selections require a manifest and inventory")
+        return [], [], empty_report
+    manifest = read_json(manifest_path)
+    inventory = read_json(inventory_path)
+    if any(
+        not isinstance(document, dict)
+        or type(document.get("schema_version")) is not int
+        or document["schema_version"] != 1
+        for document in (manifest, inventory)
+    ):
+        raise ValueError("Wikimedia manifest and inventory require schema_version 1")
+    categories = manifest.get("categories")
+    if (
+        not isinstance(categories, list)
+        or not categories
+        or any(
+            not isinstance(category, str) or not category.startswith("Category:")
+            for category in categories
+        )
+        or len(categories) != len(set(categories))
+        or categories != inventory.get("categories")
+    ):
+        raise ValueError(
+            "Wikimedia manifest and inventory categories differ or are invalid"
+        )
+    assets = page_map(manifest.get("assets"), "assets")
+    files = page_map(inventory.get("files"), "inventory files")
+    excluded = page_map(inventory.get("excluded"), "exclusions")
+    if (
+        type(inventory.get("expected_count")) is not int
+        or inventory["expected_count"] != len(files)
+        or set(assets) & set(excluded)
+        or set(files) != set(assets) | set(excluded)
+    ):
+        raise ValueError(
+            "Wikimedia inventory coverage must equal imported assets plus explicit exclusions"
+        )
+    discovered = inventory.get("discovered_count", len(files))
+    if type(discovered) is not int or not 0 <= discovered <= len(files):
+        raise ValueError("Wikimedia discovered_count exceeds inventory coverage")
+    exclusions_path = folder / "exclusions.json"
+    if exclusions_path.exists():
+        explicit = read_json(exclusions_path)
+        if (
+            not isinstance(explicit, dict)
+            or page_map(explicit.get("excluded"), "explicit exclusions") != excluded
+        ):
+            raise ValueError("Wikimedia exclusions differ from inventory")
+    for identity, exclusion in excluded.items():
+        if (
+            not isinstance(exclusion.get("reason"), str)
+            or not exclusion["reason"].strip()
+            or exclusion.get("title") != files[identity].get("title")
+            or exclusion.get("description_url")
+            != files[identity].get("description_url")
+        ):
+            raise ValueError(
+                f"Wikimedia exclusion lacks matching provenance or reason: {identity}"
+            )
+    originals = []
+    original_paths = set()
+    logo_paths = set()
+    for identity, asset in sorted(assets.items()):
+        candidate = files[identity]
+        if not isinstance(asset.get("title"), str) or not asset["title"].startswith(
+            "File:"
+        ):
+            raise ValueError(f"Wikimedia asset {identity}: invalid File title")
+        for field in ("title", "categories", "description_url"):
+            if asset.get(field) != candidate.get(field):
+                raise ValueError(
+                    f"Wikimedia asset {identity}: inventory {field} differs"
+                )
+        if (
+            not isinstance(asset.get("categories"), list)
+            or not asset["categories"]
+            or any(category not in categories for category in asset["categories"])
+        ):
+            raise ValueError(f"Wikimedia asset {identity}: unknown category")
+        for field in ("description_url", "image_url"):
+            address = asset.get(field)
+            if not isinstance(address, str):
+                raise ValueError(f"Wikimedia asset {identity}: missing {field}")
+            parsed = urlsplit(address)
+            if (
+                parsed.scheme != "https"
+                or not parsed.netloc
+                or parsed.username
+                or parsed.password
+            ):
+                raise ValueError(f"Wikimedia asset {identity}: invalid HTTPS {field}")
+        for field in (
+            "source_timestamp",
+            "artist",
+            "credit",
+            "license_short_name",
+            "license_url",
+        ):
+            if not isinstance(asset.get(field), str):
+                raise ValueError(
+                    f"Wikimedia asset {identity}: missing provenance {field}"
+                )
+        if (
+            asset.get("attribution_required") is not None
+            and type(asset["attribution_required"]) is not bool
+        ):
+            raise ValueError(
+                f"Wikimedia asset {identity}: invalid attribution_required"
+            )
+        if "attribution_required" not in asset:
+            raise ValueError(
+                f"Wikimedia asset {identity}: missing attribution_required"
+            )
+        original = asset.get("original")
+        path = source_file(root, original, ("sources", "wikimedia", "originals"))
+        logo = asset.get("logo")
+        if not isinstance(logo, str):
+            raise ValueError(f"Wikimedia asset {identity}: logo path must be a string")
+        if original in original_paths or logo in logo_paths:
+            raise ValueError(f"Duplicate Wikimedia asset path for page_id {identity}")
+        original_paths.add(original)
+        logo_paths.add(logo)
+        if logo != f"logosChannels/commons-{identity}.png":
+            raise ValueError(f"Wikimedia asset {identity}: invalid published logo path")
+        source_format = asset.get("source_format")
+        if source_format == "SVG":
+            info = svg_metadata(path, original)
+        else:
+            info = image_metadata(path, original)
+        if info["format"] != source_format or info["sha256"] != asset.get(
+            "original_sha256"
+        ):
+            raise ValueError(
+                f"Wikimedia asset {identity}: original format or checksum differs"
+            )
+        published = image_metadata_by_path.get(logo)
+        if (
+            published is None
+            or published["format"] != "PNG"
+            or published["frames"] != 1
+            or published["sha256"] != asset.get("logo_sha256")
+            or type(asset.get("transparency")) is not bool
+            or published["has_transparency"] != asset["transparency"]
+            or (published["width"], published["height"])
+            != (asset.get("width"), asset.get("height"))
+        ):
+            raise ValueError(
+                f"Wikimedia asset {identity}: published PNG render or checksum differs"
+            )
+        originals.append(info)
+    selections_path = folder / "selections.json"
+    selections = []
+    if selections_path.exists():
+        document = read_json(selections_path)
+        if not isinstance(document, dict) or not isinstance(
+            document.get("entries"), list
+        ):
+            raise ValueError("Wikimedia selections require entries list")
+        selections = document["entries"]
+    selected_by_page = defaultdict(list)
+    seen = set()
+    selected_paths = set()
+    selected_pairs = set()
+    for selection in selections:
+        entry = validate_entry(selection, set(image_metadata_by_path), seen)
+        identity = selection.get("page_id")
+        if type(identity) is not int or identity not in assets:
+            raise ValueError(
+                f"Wikimedia selection refers to unknown page_id: {identity}"
+            )
+        legacy_paths = selection.get("legacy_paths", [])
+        if not isinstance(legacy_paths, list) or any(
+            not isinstance(target, str) for target in legacy_paths
+        ):
+            raise ValueError(
+                f"Wikimedia legacy_paths must be a list of paths: {entry['id']}"
+            )
+        targets = sorted(set([entry["logo"], *legacy_paths]))
+        for target in targets:
+            if target in selected_paths:
+                raise ValueError(
+                    f"Duplicate Wikimedia selected logo shared by media: {target}"
+                )
+            selected_paths.add(target)
+            selected_pairs.add((identity, target))
+            metadata = image_metadata_by_path.get(target)
+            if (
+                metadata is None
+                or metadata["sha256"] != assets[identity]["logo_sha256"]
+            ):
+                raise ValueError(f"Wikimedia selected logo checksum differs: {target}")
+        report_entry = dict(entry)
+        if "legacy_paths" in selection:
+            report_entry["legacy_paths"] = legacy_paths
+        selected_by_page[identity].append(report_entry)
+    upserts_path = folder / "upserts.json"
+    if upserts_path.exists():
+        document = read_json(upserts_path)
+        if not isinstance(document, dict) or not isinstance(
+            document.get("upserts"), list
+        ):
+            raise ValueError("Wikimedia upserts require an upserts list")
+        upsert_pairs = set()
+        for upsert in document["upserts"]:
+            if not isinstance(upsert, dict):
+                raise ValueError("Wikimedia upsert must be an object")
+            identity, logo = upsert.get("page_id"), upsert.get("logo")
+            if (
+                type(identity) is not int
+                or not isinstance(logo, str)
+                or (identity, logo) not in selected_pairs
+                or (identity, logo) in upsert_pairs
+            ):
+                raise ValueError("Wikimedia upserts do not match unique selected logos")
+            upsert_pairs.add((identity, logo))
+            if upsert.get("logo_sha256") != assets[identity]["logo_sha256"]:
+                raise ValueError(f"Wikimedia upsert checksum differs: {logo}")
+            previous = upsert.get("previous_logo")
+            checksum = upsert.get("previous_logo_sha256")
+            if previous is None:
+                if checksum is not None:
+                    raise ValueError(
+                        f"Wikimedia backup checksum without previous_logo: {logo}"
+                    )
+            else:
+                backup = source_file(
+                    root, previous, ("sources", "wikimedia", "legacy-originals")
+                )
+                if hashlib.sha256(backup.read_bytes()).hexdigest() != checksum:
+                    raise ValueError(
+                        f"Wikimedia backup previous_logo checksum differs: {previous}"
+                    )
+        if upsert_pairs != selected_pairs:
+            raise ValueError("Wikimedia upserts coverage differs from selected logos")
+    report_assets = []
+    for identity, asset in sorted(assets.items()):
+        report_assets.append(
+            dict(
+                asset,
+                status="selected" if selected_by_page[identity] else "available",
+                selected_entries=sorted(
+                    selected_by_page[identity], key=lambda entry: entry["id"]
+                ),
+            )
+        )
+    report = {
+        "schema_version": 1,
+        "categories": categories,
+        "expected_count": len(files),
+        "discovered_count": discovered,
+        "imported_count": len(assets),
+        "selected_media_count": len(selections),
+        "selected_path_count": len(selected_paths),
+        "files": [files[key] for key in sorted(files)],
+        "assets": report_assets,
+        "excluded": [excluded[key] for key in sorted(excluded)],
+    }
+    return selections, originals, report
+
+
 def build_outputs(root):
     root = Path(root)
     folder = root / "logosChannels"
@@ -241,18 +570,28 @@ def build_outputs(root):
     entries = list(entries)
     stations, originals = radio_entries(root, {item["path"]: item for item in metadata})
     entries.extend(stations)
+    wiki_selections, wiki_originals, wiki_report = wikimedia_entries(
+        root, {item["path"]: item for item in metadata}
+    )
+    originals.extend(wiki_originals)
     image_paths = {item["path"] for item in metadata}
     seen = set()
     catalog = sorted(
         (validate_entry(entry, image_paths, seen) for entry in entries),
         key=lambda entry: entry["id"],
     )
+    by_id = {entry["id"]: entry for entry in catalog}
+    for selection in wiki_selections:
+        entry = {field: selection[field] for field in PUBLIC_FIELDS}
+        by_id[entry["id"]] = entry
+    catalog = sorted(by_id.values(), key=lambda entry: entry["id"])
     identified = {entry["logo"] for entry in catalog}
     return {
         "index_picons.json": {"name": [path.name for path in candidates]},
         "catalog.v1.json": {"schema_version": 1, "entries": catalog},
         "reports/images.json": {"images": metadata, "originals": originals},
         "reports/collisions.json": {"collisions": collisions},
+        "reports/wikimedia.json": wiki_report,
         "reports/unidentified.json": {"images": sorted(image_paths - identified)},
     }
 
